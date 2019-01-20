@@ -240,7 +240,7 @@ $(function () {
                 $('.block-page').addClass('hidden-page');
                 $('.item-page').removeClass('hidden-page').attr('value', block_id);
 
-                for(let i = 0; i < data.length; i++) {
+                for (let i = 0; i < data.length; i++) {
                     let eng = data[i][2];
                     let rus = data[i][1];
                     let id = data[i][0];
@@ -256,10 +256,10 @@ $(function () {
     function add_couple(eng, rus, status, id) {
         console.log(arguments);
         $("#new-eng, #new-rus").val("");
-        $(".todo-list").prepend
+        $(".voc-list").prepend
         (
-            "<li class=\"view item-item\" value='"+ id +"'>\n" +
-            "<input class=\"toggle\" type=\"checkbox\" "+ status +">\n" +
+            "<li class=\"view item-item\" value='" + id + "'>\n" +
+            "<input class=\"toggle\" type=\"checkbox\" " + status + ">\n" +
             "<label class=\"active eng\">" + eng + "</label>\n" +
             "<label class=\"hidden rus\">" + rus + "</label>\n" +
             "<button class=\"destroy\"></button>\n" +
@@ -325,6 +325,36 @@ $(function () {
             let block_id = $(this).parent().val();
             get_couples_by_block_id(block_id);
         })
+        .on('click', "#all", function () {
+            $('.voc-list :checkbox:checked').each(function () {
+                $('.voc-list .toggle').each(function () {
+                    $(this).parent().removeClass('hidden-item');
+                });
+            });
+        })
+        .on('click', "#active", function () {
+            $('.voc-list .toggle:checked').each(function () {
+                $(this).parent().addClass('hidden-item');
+            });
+
+            $('.voc-list .toggle:not(:checked)').each(function () {
+                $(this).parent().removeClass('hidden-item');
+            });
+        })
+        .on('click', "#completed", function () {
+            $('.voc-list .toggle:not(:checked)').each(function () {
+                $(this).parent().addClass('hidden-item');
+            });
+
+            $('.voc-list .toggle:checked').each(function () {
+                $(this).parent().removeClass('hidden-item');
+            });
+        })
+        .on('click', "#clear", function () {
+            $('.voc-list .toggle:checked').each(function () {
+                $(this).siblings('.destroy').click();
+            });
+        })
         .on('change', ".item-item .toggle", function () {
             let status = $(this).prop("checked");
             let item_id = $(this).parents('.view').val();
@@ -336,6 +366,12 @@ $(function () {
             let item_id = $(this).parents('.view').val();
 
             save_status_block(status, item_id);
+        })
+        .on('click', "#back", function () {
+            $('.voc-list li').not('li:last, li:nth-last-child(2)').remove();
+            // $('.voc-list li').slice(-2).remove();
+            $('.item-page').addClass('hidden-page').removeAttr('value');
+            $('.block-page').removeClass('hidden-page');
         })
         .keypress(function (event) {
 

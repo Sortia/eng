@@ -383,6 +383,62 @@ html .clear-completed:active {
     }
 }
 
-.hidden-page {
+.hidden-page, .hidden-item {
     display: none;
+}
+
+.line-back {
+    width: 100px;
+    height: 500px;
+}
+
+div.todos .list-footer {
+    font-family: 'Open Sans Condensed', sans-serif;
+    background-color: #F4F4F4;
+    text-align: left;
+    border: 1px solid #D0D0D0;
+    padding: 8px;
+}
+
+div.todos .list-footer .count {
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+div.todos .list-footer button {
+    font-size: 16px;
+    background-color: #F4F4F4;
+    border: none;
+}
+
+div.todos .list-footer span.nav-btn {
+    margin-left: 18%;
+}
+
+div.todos .list-footer span.nav-btn button {
+    padding: 1px 8px 1px 8px;
+}
+
+div.todos .list-footer span #clear {
+    padding: 0 8px 0 8px;
+}
+
+div.todos .list-footer span.nav-btn button:hover {
+    border: 1px solid #D0D0D0;
+    padding: 0 7px 0 7px;
+}
+
+div.todos .list-footer span.clear button:focus {
+    border-bottom: 1px solid #D0D0D0;
+    padding: 0 8px 0 8px;
+}
+
+div.todos .list-footer span.clear button:active {
+    border-bottom: 1px solid #D0D0D0;
+    padding: 0 8px 0 8px;
+}
+
+div.todos .list-footer span.clear {
+    padding: 0px 8px 0px 8px;
+    float: right;
 }

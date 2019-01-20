@@ -13,7 +13,7 @@
 
             $items = mysqli_fetch_all(mysqli_query($link, $query));
             mysqli_close($link);
-//dd($items);
+
             foreach ($items as $item) {
                 ?>
                 <li class="view item-block" value="<?= $item[0] ?>">

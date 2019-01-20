@@ -6,6 +6,9 @@
     </header>
     <section class="main">
         <ul id="sortable" class="todo-list voc-list">
+            <li id="back" class="view">
+                <label style="padding: 15px;" class="block-back"><span style="padding-right: 20px;" class="back-arrow">←</span>back</label>
+            </li>
         </ul>
     </section>
 </div>
