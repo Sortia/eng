@@ -9,15 +9,15 @@
 <section class="todoapp">
 
     <?php
-        require_once 'save_block.php';
-//        require_once 'item.php';
+        require_once 'sup_functions.php';
+        require_once 'block.php';
+        require_once 'item.php';
     ?>
-
 
 </section>
 
 
-<script src="js/jquery.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/app.js"></script>
 <script src="js/jquery-ui.min.js"></script>
 

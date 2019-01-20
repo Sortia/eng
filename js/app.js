@@ -94,14 +94,14 @@ $(function () {
     });
 
     $.fn.shuffle = function () {
-        var allElems = this.get();
+        let allElems = this.get();
 
-        var getRandom = function (max) {
+        let getRandom = function (max) {
             return Math.floor(Math.random() * max);
         };
 
-        var shuffled = $.map(allElems, function () {
-            var random = getRandom(allElems.length),
+        let shuffled = $.map(allElems, function () {
+            let random = getRandom(allElems.length),
                 randEl = $(allElems[random]).clone(true)[0];
             allElems.splice(random, 1);
             return randEl;
@@ -151,7 +151,6 @@ $(function () {
     }
 
     function save_status(status, item_id) {
-        console.log(status, item_id);
         $.ajax({
             type: "GET",
             url: "/save_item.php",
@@ -160,6 +159,19 @@ $(function () {
             data: {
                 status: status,
                 item_id: item_id,
+            },
+        });
+    }
+
+    function save_status_block(status, block_id) {
+        $.ajax({
+            type: "GET",
+            url: "/save_block.php",
+            async: true,
+            dataType: 'json',
+            data: {
+                status: status,
+                block_id: block_id,
             },
         });
     }
@@ -214,31 +226,58 @@ $(function () {
         });
     }
 
-    function add_couple(eng, rus) {
+    function get_couples_by_block_id(block_id) {
+        $.ajax({
+            type: "GET",
+            url: "/save_item.php",
+            async: true,
+            dataType: 'json',
+            data: {
+                block_id: block_id,
+            },
+            success: function (data) {
+
+                $('.block-page').addClass('hidden-page');
+                $('.item-page').removeClass('hidden-page').attr('value', block_id);
+
+                for(let i = 0; i < data.length; i++) {
+                    let eng = data[i][2];
+                    let rus = data[i][1];
+                    let id = data[i][0];
+                    let checked = parseInt(data[i][3]) === 1 ? 'checked' : '';
+                    add_couple(eng, rus, checked, id);
+
+                    // $('.item-page');
+                }
+            }
+        });
+    }
+
+    function add_couple(eng, rus, status, id) {
+        console.log(arguments);
         $("#new-eng, #new-rus").val("");
         $(".todo-list").prepend
         (
-            "<li class=\"view\">\n" +
-            "<input class=\"toggle\" type=\"checkbox\">\n" +
+            "<li class=\"view item-item\" value='"+ id +"'>\n" +
+            "<input class=\"toggle\" type=\"checkbox\" "+ status +">\n" +
             "<label class=\"active eng\">" + eng + "</label>\n" +
             "<label class=\"hidden rus\">" + rus + "</label>\n" +
             "<button class=\"destroy\"></button>\n" +
             "</li>"
         );
         $('#new-eng').focus();
-        save_couple(eng, rus);
     }
 
-    var delay_rus = (function () {
-        var timer1 = 0;
+    let delay_rus = (function () {
+        let timer1 = 0;
         return function (callback, ms) {
             clearTimeout(timer1);
             timer1 = setTimeout(callback, ms);
         };
     })();
 
-    var delay_eng = (function () {
-        var timer2 = 0;
+    let delay_eng = (function () {
+        let timer2 = 0;
         return function (callback, ms) {
             clearTimeout(timer2);
             timer2 = setTimeout(callback, ms);
@@ -282,49 +321,59 @@ $(function () {
 
             delete_couple(rus, eng);
         })
-        .on('change', ".toggle", function () {
-
+        .on('click', ".block", function () {
+            let block_id = $(this).parent().val();
+            get_couples_by_block_id(block_id);
+        })
+        .on('change', ".item-item .toggle", function () {
             let status = $(this).prop("checked");
             let item_id = $(this).parents('.view').val();
 
             save_status(status, item_id);
         })
+        .on('change', ".item-block .toggle", function () {
+            let status = $(this).prop("checked");
+            let item_id = $(this).parents('.view').val();
+
+            save_status_block(status, item_id);
+        })
         .keypress(function (event) {
 
-            switch (event.keyCode) {
+                switch (event.keyCode) {
 
-                case 81:
-                case 1049:
-                    $('.eng').addClass('hidden').removeClass('active');
-                    $('.rus').addClass('active').removeClass('hidden');
-                    $('li').shuffle();
-                    $('.eng').each(function () {
-                        $(this).before($(this).siblings('.rus'));
-                    });
-                    break;
+                    case 81:
+                    case 1049:
+                        $('.eng').addClass('hidden').removeClass('active');
+                        $('.rus').addClass('active').removeClass('hidden');
+                        $('li').shuffle();
+                        $('.eng').each(function () {
+                            $(this).before($(this).siblings('.rus'));
+                        });
+                        break;
 
-                case 87:
-                case 1062:
-                    $('.rus').addClass('hidden').removeClass('active');
-                    $('.eng').addClass('active').removeClass('hidden');
-                    $('li').shuffle();
-                    $('.rus').each(function () {
-                        $(this).before($(this).siblings('.eng'));
-                    });
-                    break;
+                    case 87:
+                    case 1062:
 
-                case 33:
-                    save();
-                    break;
+                        $('.rus').addClass('hidden').removeClass('active');
+                        $('.eng').addClass('active').removeClass('hidden');
+                        $('li').shuffle();
+                        $('.rus').each(function () {
+                            $(this).before($(this).siblings('.eng'));
+                        });
+                        break;
 
-                case 13:
-                    let eng = $("#new-eng");
-                    let rus = $("#new-rus");
+                    case 13:
+                        let eng = $("#new-eng");
+                        let rus = $("#new-rus");
 
-                    if (eng.val() === "" && rus.val() === "") window.stop();
-                    if (eng.val() === "") rus_into_eng(rus.val());
-                    else if (rus.val() === "") eng_into_rus(eng.val());
-                    else add_couple(eng.val(), rus.val());
+                        if (eng.val() === "" && rus.val() === "") window.stop();
+                        if (eng.val() === "") rus_into_eng(rus.val());
+                        else if (rus.val() === "") eng_into_rus(eng.val());
+                        else {
+                            add_couple(eng.val(), rus.val());
+                            save_couple(eng, rus);
+                        }
+                }
             }
-        });
+        );
 });

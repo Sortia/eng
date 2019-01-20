@@ -1,5 +1,7 @@
 <?php
 
+require_once 'sup_functions.php';
+
 $link = mysqli_connect("127.0.0.1", "root", "", "eng");
 $query = "";
 
@@ -25,6 +27,16 @@ if (isset($_GET['status']) AND isset($_GET['item_id'])) {
     $item_id = $_GET['item_id'];
 
     $query = "UPDATE item SET status = '$status' WHERE id = '$item_id'";
+}
+
+if (isset($_GET['block_id'])) {
+
+    $block_id = $_GET['block_id'];
+    $query = "SELECT * FROM item WHERE block_id = $block_id";
+    $items = mysqli_fetch_all(mysqli_query($link, $query));
+    $query = '';
+
+    echo json_encode($items);
 }
 
 if($query !== '')
