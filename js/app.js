@@ -381,7 +381,7 @@ $(function () {
                     case 1049:
                         $('.eng').addClass('hidden').removeClass('active');
                         $('.rus').addClass('active').removeClass('hidden');
-                        $('li').shuffle();
+                        $('.item-item').shuffle();
                         $('.eng').each(function () {
                             $(this).before($(this).siblings('.rus'));
                         });
@@ -392,7 +392,7 @@ $(function () {
 
                         $('.rus').addClass('hidden').removeClass('active');
                         $('.eng').addClass('active').removeClass('hidden');
-                        $('li').shuffle();
+                        $('.item-item').shuffle();
                         $('.rus').each(function () {
                             $(this).before($(this).siblings('.eng'));
                         });
