@@ -38,7 +38,7 @@ let chars_arr = [
 ];
 
 let shift_numder_arr = [
-    ')', '!', '@','#','$','%','^','&','*','('
+    '!', '@', '#', '$', '%', '^', '&', '*', '(', ')'
 ];
 
 let eng_input = '';
@@ -50,7 +50,6 @@ function char_replace(text, lang) {
 
     let new_str = "";
     let index1, index2;
-    console.log(new_str);
     if (lang === 'eng') {
 
         if (eng_input !== undefined) {
@@ -200,7 +199,8 @@ $(function () {
                 eng = data.text[0];
                 $("#new-eng").val(eng);
 
-                if (eng !== rus) add_couple(eng, rus);
+                if (eng !== rus)
+                    add_couple(eng, rus);
             }
         });
     }
@@ -225,7 +225,8 @@ $(function () {
                 rus = data.text[0];
                 $("#new-rus").val(rus);
 
-                if (eng !== rus) add_couple(eng, rus);
+                if (eng !== rus)
+                    add_couple(eng, rus);
             }
         });
     }
@@ -250,15 +251,12 @@ $(function () {
                     let id = data[i][0];
                     let checked = parseInt(data[i][3]) === 1 ? 'checked' : '';
                     add_couple(eng, rus, checked, id);
-
-                    // $('.item-page');
                 }
             }
         });
     }
 
     function add_couple(eng, rus, status, id) {
-        console.log(arguments);
         $("#new-eng, #new-rus").val("");
         $(".voc-list").prepend
         (
@@ -317,6 +315,9 @@ $(function () {
         .on('mouseup mousedown', '.eng, .rus', function () {
             $(this).tip();
         })
+        .on('click', '.eng, .rus', function () { // only for hot keys
+            $(this).tip();
+        })
         .on('click', ".destroy", function () {
             $(this).parent().remove();
 
@@ -373,20 +374,25 @@ $(function () {
         })
         .on('click', "#back", function () {
             $('.voc-list li').not('li:last, li:nth-last-child(2)').remove();
-            // $('.voc-list li').slice(-2).remove();
             $('.item-page').addClass('hidden-page').removeAttr('value');
             $('.block-page').removeClass('hidden-page');
         })
         .keypress(function (event) {
 
-            let char_click = getChar(event);
+                let char_click = getChar(event);
+                let number = shift_numder_arr.indexOf(char_click);
 
+                if (number !== -1) {
+                    if (!$('.block-page').hasClass('hidden-page')) {
+                        $('.block:eq(' + number + ')').click();
+                    } else {
+                        let item = $('.item-item:eq(' + number + ')');
 
-            let number = shift_numder_arr.indexOf(char_click);
-            console.log(char_click, number);
-            if (number !== -1) {
-                if ()
-            }
+                        if (item.children('.eng').hasClass('hidden'))
+                            item.children('.rus').click();
+                        else item.children('.eng').click();
+                    }
+                }
 
                 switch (event.keyCode) {
 
