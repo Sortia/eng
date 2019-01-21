@@ -37,6 +37,10 @@ let chars_arr = [
     ['?', ','],
 ];
 
+let shift_numder_arr = [
+    ')', '!', '@','#','$','%','^','&','*','('
+];
+
 let eng_input = '';
 let rus_input = '';
 
@@ -375,6 +379,15 @@ $(function () {
         })
         .keypress(function (event) {
 
+            let char_click = getChar(event);
+
+
+            let number = shift_numder_arr.indexOf(char_click);
+            console.log(char_click, number);
+            if (number !== -1) {
+                if ()
+            }
+
                 switch (event.keyCode) {
 
                     case 81:
@@ -398,6 +411,26 @@ $(function () {
                         });
                         break;
 
+                    case 65:
+                    case 1060:
+                        $('#all').click();
+                        break;
+
+                    case 83:
+                    case 1067:
+                        $('#active').click();
+                        break;
+
+                    case 68:
+                    case 1042:
+                        $('#completed').click();
+                        break;
+
+                    case 66:
+                    case 1048:
+                        $('.block-back').click();
+                        break;
+
                     case 13:
                         let eng = $("#new-eng");
                         let rus = $("#new-rus");
@@ -412,4 +445,10 @@ $(function () {
                 }
             }
         );
+
+    function getChar(event) {
+        event = event || window.event;
+        let keyCode = event.which || event.keyCode;
+        return String.fromCharCode(keyCode);
+    }
 });
