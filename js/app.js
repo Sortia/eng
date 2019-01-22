@@ -1,3 +1,5 @@
+// TODO bug with hot keys (shift + 1, 2, 3, ...)
+// TODO hot key tip when some elements hidden
 let chars_arr = [
     ['q', 'й'],
     ['w', 'ц'],
@@ -64,7 +66,6 @@ function char_replace(text, lang) {
     }
 
     if (lang === 'rus') {
-
         if (rus_input !== undefined) {
             if (rus_input !== '') {
                 text = text.replace(rus_input);
@@ -127,7 +128,20 @@ $(function () {
         $(another).removeClass('hidden').addClass('active');
     };
 
-    function save_couple(eng, rus) {
+    function add_block(block_name) {
+        $.ajax({
+            type: "GET",
+            url: "/save_block.php",
+            async: true,
+            dataType: 'json',
+            data: {
+                block_name: block_name,
+            },
+        });
+    }
+
+    function save_couple(eng, rus, block_id) {
+        console.log(arguments);
         $.ajax({
             type: "GET",
             url: "/save_item.php",
@@ -136,6 +150,7 @@ $(function () {
             data: {
                 rus: rus,
                 eng: eng,
+                parent: block_id
             },
         });
     }
@@ -256,6 +271,18 @@ $(function () {
         });
     }
 
+    function delete_block(block_name) {
+        $.ajax({
+            type: "GET",
+            url: "/save_block.php",
+            async: true,
+            dataType: 'json',
+            data: {
+                del_block: block_name,
+            },
+        });
+    }
+
     function add_couple(eng, rus, status, id) {
         $("#new-eng, #new-rus").val("");
         $(".voc-list").prepend
@@ -318,13 +345,20 @@ $(function () {
         .on('click', '.eng, .rus', function () { // only for hot keys
             $(this).tip();
         })
-        .on('click', ".destroy", function () {
+        .on('click', ".item-item .destroy", function () {
             $(this).parent().remove();
 
             let rus = $(this).siblings('.rus').text();
             let eng = $(this).siblings('.eng').text();
 
             delete_couple(rus, eng);
+        })
+        .on('click', ".item-block .destroy", function () {
+            $(this).parent().remove();
+
+            let block_name = $(this).siblings('.block').text();
+
+            delete_block(block_name);
         })
         .on('click', ".block", function () {
             let block_id = $(this).parent().val();
@@ -373,11 +407,15 @@ $(function () {
             save_status_block(status, item_id);
         })
         .on('click', "#back", function () {
-            $('.voc-list li').not('li:last, li:nth-last-child(2)').remove();
+            $("#new-eng").val('');
+            $("#new-rus").val('');
+            $('.voc-list li').not('li:last').remove();
             $('.item-page').addClass('hidden-page').removeAttr('value');
             $('.block-page').removeClass('hidden-page');
         })
         .keypress(function (event) {
+
+            // console.log(event.keyCode);
 
                 let char_click = getChar(event);
                 let number = shift_numder_arr.indexOf(char_click);
@@ -434,20 +472,29 @@ $(function () {
 
                     case 66:
                     case 1048:
-                        $('.block-back').click();
+                        $('#back').click();
                         break;
 
                     case 13:
                         let eng = $("#new-eng");
                         let rus = $("#new-rus");
+                        let block = $('#new-block').val();
 
-                        if (eng.val() === "" && rus.val() === "") window.stop();
-                        if (eng.val() === "") rus_into_eng(rus.val());
-                        else if (rus.val() === "") eng_into_rus(eng.val());
-                        else {
-                            add_couple(eng.val(), rus.val());
-                            save_couple(eng, rus);
+                        if(eng.val() || rus.val()) {
+                            if (eng.val() === "" && rus.val() === "") window.stop();
+                            if (eng.val() === "") rus_into_eng(rus.val());
+                            else if (rus.val() === "") eng_into_rus(eng.val());
+                            else {
+                                let block_id = $('.item-page').attr('value');
+                                console.log(eng.val(), rus.val(), block_id);
+                                save_couple(eng.val(), rus.val(), block_id);
+                                add_couple(eng.val(), rus.val());
+                            }
                         }
+                        if(block) {
+                            add_block(block);
+                        }
+
                 }
             }
         );

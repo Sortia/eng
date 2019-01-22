@@ -1,7 +1,6 @@
-<?php
-
-require_once 'sup_functions.php';
-
+<?php require_once 'sup_functions.php';
+// TODO valid rus/eng (no repeat)
+// TODO save data in cloud
 $link = mysqli_connect("127.0.0.1", "root", "", "eng");
 $query = "";
 
@@ -9,8 +8,9 @@ if (isset($_GET['rus']) AND isset($_GET['eng'])) {
 
     $rus = $_GET['rus'];
     $eng = $_GET['eng'];
+    $block_id = $_GET['parent'];
 
-    $query = "INSERT INTO item (rus, eng) VALUES ('$rus', '$eng');";
+    $query = "INSERT INTO item (rus, eng, block_id) VALUES ('$rus', '$eng', '$block_id');";
 }
 
 if (isset($_GET['del_rus']) AND isset($_GET['del_eng'])) {

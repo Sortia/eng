@@ -1,7 +1,7 @@
 <div class="block-page">
     <header class="header">
         <h1>ToLearn</h1>
-        <input class="new-todo new-eng" id="new-eng" placeholder="block_name" autofocus">
+        <input class="new-todo" id="new-block" placeholder="block_name" autofocus">
     </header>
     <section class="main">
         <ul id="sortable" class="todo-list block-list">
