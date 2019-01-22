@@ -30,8 +30,9 @@
 </section>
 
 <script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/ajax.js"></script>
 <script src="js/app.js"></script>
-<script src="js/jquery-ui.min.js"></script>
+<!--<script src="js/jquery-ui.min.js"></script>-->
 
 </body>
 </html>
