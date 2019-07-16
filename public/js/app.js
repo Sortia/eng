@@ -18,8 +18,6 @@ let rus_input = '';
 
 
 function char_replace(text, lang) {
-
-
     let new_str = "";
     let index1, index2;
     if (lang === 'eng') {
@@ -60,10 +58,6 @@ function char_replace(text, lang) {
     return new_str;
 }
 
-// $("#sortable").sortable({
-//     axis: "y"
-// });
-
 $.fn.shuffle = function () {
     let allElems = this.get();
 
@@ -86,7 +80,6 @@ $.fn.shuffle = function () {
 };
 
 $.fn.tip = function () {
-
     let item = this.get();
     let another = $(item).siblings('.hidden');
 
@@ -99,11 +92,11 @@ function add_couple(eng, rus, status, id) {
     $("#new-eng, #new-rus").val("");
     $(".voc-list").prepend
     (
-        "<li class=\"view item-item\" value='" + id + "'>\n" +
-        "<input class=\"toggle\" type=\"checkbox\" " + status + ">\n" +
-        "<label class=\"active eng\">" + eng + "</label>\n" +
-        "<label class=\"hidden rus\">" + rus + "</label>\n" +
-        "<button class=\"destroy\"></button>\n" +
+ "<li class='view item-item' value='" + id + "'>\n" +
+            "<input class='toggle' type='checkbox' " + status + ">\n" +
+            "<label class='active eng'>" + eng + "</label>\n" +
+            "<label class='hidden rus'>" + rus + "</label>\n" +
+            "<button class='destroy'></button>\n" +
         "</li>"
     );
     $('#new-eng').focus();

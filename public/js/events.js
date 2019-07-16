@@ -11,7 +11,7 @@ $('body')
         let rus = $(this).siblings('.rus').text();
         let eng = $(this).siblings('.eng').text();
 
-        delete_couple(rus, eng);
+        delete_item(rus, eng);
     })
     .on('click', ".item-block .destroy", function () {
         $(this).parent().remove();
@@ -22,7 +22,7 @@ $('body')
     })
     .on('click', ".block", function () {
         let block_id = $(this).parent().val();
-        get_couples_by_block_id(block_id);
+        get_items(block_id);
     })
     .on('click', "#all", function () {
         $('.voc-list :checkbox:checked').each(function () {
@@ -58,13 +58,13 @@ $('body')
         let status = $(this).prop("checked");
         let item_id = $(this).parents('.view').val();
 
-        save_status(status, item_id);
+        save_item_status(status, item_id);
     })
     .on('change', ".item-block .toggle", function () {
         let status = $(this).prop("checked");
         let item_id = $(this).parents('.view').val();
 
-        save_status_block(status, item_id);
+        save_block_status(status, item_id);
     })
     .on('click', "#back", function () {
         $("#new-eng").val('');
@@ -75,7 +75,7 @@ $('body')
     })
     .keypress(function (event) {
 
-            // console.log(event.keyCode);
+            console.log(event.keyCode);
 
             let char_click = getChar(event);
             let number = shift_numder_arr.indexOf(char_click);
@@ -94,7 +94,7 @@ $('body')
 
             switch (event.keyCode) {
 
-                case 81:
+                case 81: // shift + q
                 case 1049:
                     $('.eng').addClass('hidden').removeClass('active');
                     $('.rus').addClass('active').removeClass('hidden');
@@ -104,7 +104,7 @@ $('body')
                     });
                     break;
 
-                case 87:
+                case 87: // shift + w
                 case 1062:
 
                     $('.rus').addClass('hidden').removeClass('active');
@@ -115,27 +115,27 @@ $('body')
                     });
                     break;
 
-                case 65:
+                case 65: // shift + a
                 case 1060:
                     $('#all').click();
                     break;
 
-                case 83:
+                case 83: // shift + s
                 case 1067:
                     $('#active').click();
                     break;
 
-                case 68:
+                case 68: // shift + d
                 case 1042:
                     $('#completed').click();
                     break;
 
-                case 66:
+                case 66: // shift + b
                 case 1048:
                     $('#back').click();
                     break;
 
-                case 13:
+                case 13: // enter
                     let eng = $("#new-eng");
                     let rus = $("#new-rus");
                     let block = $('#new-block').val();
@@ -147,12 +147,12 @@ $('body')
                         else {
                             let block_id = $('.item-page').attr('value');
                             console.log(eng.val(), rus.val(), block_id);
-                            save_couple(eng.val(), rus.val(), block_id);
+                            create_item(eng.val(), rus.val(), block_id);
                             add_couple(eng.val(), rus.val());
                         }
                     }
                     if (block) {
-                        add_block(block);
+                        create_block(block);
                     }
 
             }

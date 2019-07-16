@@ -1,0 +1,32 @@
+{
+    "name": "sortia/flashcards",
+    "description": "flashcards",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Alex Kiyan",
+            "email": "alexkiyan.lug@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/events": "^5.4",
+        "jenssegers/blade": "^1.1",
+        "phroute/phroute": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Services\\": "services",
+            "Controllers\\": "app/Controllers",
+            "App\\": "app"
+        },
+        "files": [
+            "app/routes.php"
+        ]
+    },
+    "config": {
+        "platform": {
+            "php": "7.3.2"
+        },
+        "sort-packages": true
+    }
+}

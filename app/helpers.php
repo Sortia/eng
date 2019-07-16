@@ -34,3 +34,13 @@ function d($var1 = "not_found", $var2 = "not_found", $var3 = "not_found")
     echo "<br>";
     echo '<pre>';
 }
+
+function asset($path)
+{
+    return ROOT . '/' . $path;
+}
+
+function response($data)
+{
+    echo json_encode($data);
+}
