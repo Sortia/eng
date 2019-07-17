@@ -75,7 +75,7 @@
     function create_block(block_name) {
         $.ajax({
             type: "POST",
-            url: "/save",
+            url: "/create",
             async: true,
             dataType: 'json',
             data: {

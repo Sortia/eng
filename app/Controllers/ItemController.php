@@ -2,35 +2,17 @@
 
 namespace Controllers;
 
+use App\Models\Item;
+
 class ItemController extends Controller
 {
     public function post()
     {
         $block_id = $_REQUEST['block_id'];
-        $query = "SELECT * FROM item WHERE block_id = $block_id";
-        $items = mysqli_fetch_all(mysqli_query($this->link, $query));
+
+        $items = Item::read($block_id);
 
         response($items);
-    }
-
-    public function postDelete()
-    {
-        $rus = $_REQUEST['del_rus'];
-        $eng = $_REQUEST['del_eng'];
-
-        $query = "DELETE FROM item WHERE rus = '$rus' AND eng = '$eng';";
-
-        mysqli_query($this->link, $query);
-    }
-
-    public function postUpdate()
-    {
-        $status = $_REQUEST['status'] === "true" ? 1 : 0;
-        $item_id = $_REQUEST['item_id'];
-
-        $query = "UPDATE item SET status = '$status' WHERE id = '$item_id'";
-
-        mysqli_query($this->link, $query);
     }
 
     public function postCreate()
@@ -39,18 +21,22 @@ class ItemController extends Controller
         $eng = $_REQUEST['eng'];
         $block_id = $_REQUEST['parent'];
 
-        $query = "INSERT INTO item (rus, eng, block_id) VALUES ('$rus', '$eng', '$block_id');";
-
-        mysqli_query($this->link, $query);
+        Item::create($rus, $eng, $block_id);
     }
 
-    public function __construct()
+    public function postUpdate()
     {
-        parent::__construct();
+        $status = $_REQUEST['status'] === "true" ? 1 : 0;
+        $item_id = $_REQUEST['item_id'];
+
+        Item::update($status, $item_id);
     }
 
-    public function __destruct()
+    public function postDelete()
     {
-        parent::__destruct();
+        $rus = $_REQUEST['del_rus'];
+        $eng = $_REQUEST['del_eng'];
+
+        Item::delete($rus, $eng);
     }
 }

@@ -1,20 +1,12 @@
 <?php
 
-
 namespace Controllers;
 
-
-class Controller
+abstract class Controller
 {
-    protected $link;
+    abstract public function postCreate();
 
-    public function __construct()
-    {
-        $this->link = mysqli_connect("127.0.0.1", "root", "", "eng");
-    }
+    abstract public function postUpdate();
 
-    public function __destruct()
-    {
-        mysqli_close($this->link);
-    }
+    abstract public function postDelete();
 }

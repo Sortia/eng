@@ -1,27 +1,23 @@
 <?php
 
-
 namespace Controllers;
 
-use Jenssegers\Blade\Blade;
+use App\Models\Block;
 
 class BlockController extends Controller
 {
     public function get()
     {
-        $query = "SELECT * FROM block;";
-        $blocks = mysqli_fetch_all(mysqli_query($this->link, $query));
-        $blade = new Blade(ROOT . '/app/Views', ROOT . '/public/cache');
+        $blocks = Block::read();
 
-        echo $blade->make('blocks', ['blocks' => $blocks]);
+        view('blocks', ['blocks' => $blocks]);
     }
 
-    public function postSave()
+    public function postCreate()
     {
         $block_name = $_REQUEST['block_name'];
-        $query = "INSERT INTO block (name, status) VALUES ('$block_name', 0);";
 
-        mysqli_query($this->link, $query);
+        Block::create($block_name);
     }
 
     public function postUpdate()
@@ -29,31 +25,13 @@ class BlockController extends Controller
         $status = $_REQUEST['status'] === "true" ? 1 : 0;
         $block_id = $_REQUEST['block_id'];
 
-        $query = "UPDATE item SET status = '$status' WHERE block_id = '$block_id';";
-        mysqli_query($this->link, $query);
-        $query = "UPDATE block SET status = '$status' WHERE id = '$block_id';";
-        mysqli_query($this->link, $query);
+        Block::update($status, $block_id);
     }
 
     public function postDelete()
     {
         $block_name = $_REQUEST['del_block'];
 
-        $query = "SELECT id FROM block WHERE name = $block_name";
-        $id = mysqli_fetch_all(mysqli_query($this->link, $query))[0][0];
-        $query = "DELETE FROM block WHERE name = '$block_name';";
-        mysqli_query($this->link, $query);
-        $query = "DELETE FROM item WHERE block_id = '$id';";
-        mysqli_query($this->link, $query);
-    }
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    public function __destruct()
-    {
-        parent::__destruct();
+        Block::delete($block_name);
     }
 }
