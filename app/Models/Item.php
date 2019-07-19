@@ -11,7 +11,7 @@ class Item extends Model
 
     static public function read($block_id)
     {
-        return self::$link->query("SELECT * FROM item WHERE block_id = $block_id ORDER BY id desc;");
+        return self::$link->query("SELECT * FROM item WHERE block_id = $block_id ORDER BY id desc;")->fetchAll();
     }
 
     static public function update($status, $item_id)

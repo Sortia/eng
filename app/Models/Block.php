@@ -11,7 +11,7 @@ class Block extends Model
 
     static public function read()
     {
-        return self::$link->query("SELECT * FROM block ORDER BY id desc;");
+        return self::$link->query("SELECT * FROM block ORDER BY id desc;")->fetchAll();
     }
 
     static public function update($status, $block_id)
