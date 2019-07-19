@@ -13,7 +13,8 @@ class Item extends Model
 
     static public function read($block_id)
     {
-        $query = "SELECT * FROM item WHERE block_id = $block_id";
+        $query = "SELECT * FROM item WHERE block_id = $block_id ORDER BY id desc;";
+
         $items = mysqli_fetch_all(mysqli_query(self::$link, $query));
 
         return $items;
@@ -21,7 +22,7 @@ class Item extends Model
 
     static public function update($status, $item_id)
     {
-        $query = "UPDATE item SET status = '$status' WHERE id = '$item_id'";
+        $query = "UPDATE item SET status = '$status' WHERE id = '$item_id';";
 
         mysqli_query(self::$link, $query);
     }
@@ -33,3 +34,6 @@ class Item extends Model
         mysqli_query(self::$link, $query);
     }
 }
+
+// todo сделать удаление слова только из того блока в котором он удаляется (сейчас удаляются из всех)
+// todo переделать все на id'шники

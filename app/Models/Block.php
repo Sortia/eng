@@ -13,7 +13,8 @@ class Block extends Model
 
     static public function read()
     {
-        $query = "SELECT * FROM block;";
+        $query = "SELECT * FROM block ORDER BY id desc;";
+
         $blocks = mysqli_fetch_all(mysqli_query(self::$link, $query));
 
         return $blocks;
