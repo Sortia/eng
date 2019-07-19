@@ -10,11 +10,11 @@ class Model
 
     static protected $user = 'root';
 
-    static protected $pass = '0000';
+    static protected $pass = '';
 
     static public function init()
     {
-        self::$link = new PDO('mysql:host=localhost;dbname=eng', self::$user, self::$pass);
+        self::$link = new PDO('mysql:host=127.0.0.1;dbname=eng', self::$user, self::$pass);
     }
 }
 
