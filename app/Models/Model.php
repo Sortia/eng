@@ -8,7 +8,7 @@ class Model
 
     static public function init()
     {
-        self::$link = mysqli_connect("127.0.0.1", "root", "", "eng");
+        self::$link = mysqli_connect("127.0.0.1", "root", "0000", "eng");
     }
 }
 
