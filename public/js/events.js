@@ -74,9 +74,6 @@ $('body')
         $('.block-page').removeClass('hidden-page');
     })
     .keypress(function (event) {
-
-            console.log(event.keyCode);
-
             let char_click = getChar(event);
             let number = shift_numder_arr.indexOf(char_click);
 
@@ -146,13 +143,13 @@ $('body')
                         else if (rus.val() === "") eng_into_rus(eng.val());
                         else {
                             let block_id = $('.item-page').attr('value');
-                            console.log(eng.val(), rus.val(), block_id);
                             create_item(eng.val(), rus.val(), block_id);
                             add_couple(eng.val(), rus.val());
                         }
                     }
                     if (block) {
                         create_block(block);
+                        add_block(block);
                     }
 
             }

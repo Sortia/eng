@@ -89,7 +89,7 @@ $.fn.tip = function () {
 };
 
 function add_couple(eng, rus, status, id) {
-    $("#new-eng, #new-rus").val("");
+    $("#new-eng, #new-rus").val('');
     $(".voc-list").prepend
     (
  "<li class='view item-item' value='" + id + "'>\n" +
@@ -100,6 +100,18 @@ function add_couple(eng, rus, status, id) {
         "</li>"
     );
     $('#new-eng').focus();
+}
+
+function add_block(block) {
+    $('#new-block').val('');
+    $(".block-list").prepend
+    (
+ "<li class='view item-block'>\n" +
+            "<input class='toggle' type='checkbox' " + status + ">\n" +
+            "<label class='block'>" + block + "</label>\n" +
+            "<button class='destroy'></button>\n" +
+        "</li>"
+    );
 }
 
 let delay_rus = (function () {
