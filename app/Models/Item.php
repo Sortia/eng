@@ -6,34 +6,23 @@ class Item extends Model
 {
     static public function create($rus, $eng, $block_id)
     {
-        $query = "INSERT INTO item (rus, eng, block_id) VALUES ('$rus', '$eng', '$block_id');";
-
-        mysqli_query(self::$link, $query);
+        self::$link->query("INSERT INTO item (rus, eng, block_id) VALUES ('$rus', '$eng', '$block_id');");
     }
 
     static public function read($block_id)
     {
-        $query = "SELECT * FROM item WHERE block_id = $block_id ORDER BY id desc;";
-
-        $items = mysqli_fetch_all(mysqli_query(self::$link, $query));
-
-        return $items;
+        return self::$link->query("SELECT * FROM item WHERE block_id = $block_id ORDER BY id desc;");
     }
 
     static public function update($status, $item_id)
     {
-        $query = "UPDATE item SET status = '$status' WHERE id = '$item_id';";
-
-        mysqli_query(self::$link, $query);
+        self::$link->query("UPDATE item SET status = '$status' WHERE id = '$item_id';");
     }
 
     static public function delete($rus, $eng)
     {
-        $query = "DELETE FROM item WHERE rus = '$rus' AND eng = '$eng';";
-
-        mysqli_query(self::$link, $query);
+        self::$link->query("DELETE FROM item WHERE rus = '$rus' AND eng = '$eng';");
     }
 }
 
-// todo сделать удаление слова только из того блока в котором он удаляется (сейчас удаляются из всех)
 // todo переделать все на id'шники

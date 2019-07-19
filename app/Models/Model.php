@@ -2,13 +2,19 @@
 
 namespace App\Models;
 
+use PDO;
+
 class Model
 {
     static protected $link;
 
+    static protected $user = 'root';
+
+    static protected $pass = '0000';
+
     static public function init()
     {
-        self::$link = mysqli_connect("127.0.0.1", "root", "0000", "eng");
+        self::$link = new PDO('mysql:host=localhost;dbname=eng', self::$user, self::$pass);
     }
 }
 
