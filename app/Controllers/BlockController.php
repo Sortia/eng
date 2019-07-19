@@ -15,23 +15,29 @@ class BlockController extends Controller
 
     public function postCreate()
     {
-        $block_name = $_REQUEST['block_name'];
+        $block_name = $this->request['block_name'];
 
-        Block::create($block_name);
+        $block = Block::create($block_name);
+
+        response($block);
     }
 
     public function postUpdate()
     {
-        $status = $_REQUEST['status'] === "true" ? 1 : 0;
-        $block_id = $_REQUEST['block_id'];
+        $status = $this->request['status'] === "true" ? 1 : 0;
+        $block_id = $this->request['block_id'];
 
-        Block::update($status, $block_id);
+        $block = Block::update($status, $block_id);
+
+        response($block);
     }
 
     public function postDelete()
     {
-        $block_name = $_REQUEST['del_block'];
+        $block_id = $this->request['block_id'];
 
-        Block::delete($block_name);
+        $block = Block::delete($block_id);
+
+        response($block);
     }
 }

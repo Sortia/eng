@@ -7,6 +7,8 @@ class Block extends Model
     static public function create($block_name)
     {
         self::$link->query("INSERT INTO block (name, status) VALUES ('$block_name', 0);");
+
+        return self::$link->query("SELECT * FROM block WHERE id = (" . self::$link->lastInsertId() . ")")->fetch();
     }
 
     static public function read()
@@ -18,15 +20,19 @@ class Block extends Model
     {
          self::$link->query("UPDATE item SET status = '$status' WHERE block_id = '$block_id';");
          self::$link->query("UPDATE block SET status = '$status' WHERE id = '$block_id';");
+
+        return self::$link->query("SELECT * FROM block WHERE id = '$block_id'")->fetch();
     }
 
-    static public function delete($block_name)
+    static public function delete($block_id)
     {
         self::$link->beginTransaction();
         self::$link->query("
-            DELETE FROM item WHERE block_id IN (SELECT id FROM block WHERE name = $block_name);
-            DELETE FROM block WHERE name = '$block_name';
+            DELETE FROM item WHERE block_id = '$block_id';
+            DELETE FROM block WHERE id = '$block_id';
         ");
         self::$link->commit();
+
+        return (bool)!self::$link->query("SELECT EXISTS(SELECT 1 FROM item WHERE id ='$block_id' LIMIT 1)")->fetchColumn();
     }
 }

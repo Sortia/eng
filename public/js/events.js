@@ -6,19 +6,14 @@ $('body')
         $(this).tip();
     })
     .on('click', ".item-item .destroy", function () {
-        $(this).parent().remove();
+        let item = $(this).parent();
 
-        let rus = $(this).siblings('.rus').text();
-        let eng = $(this).siblings('.eng').text();
-
-        delete_item(rus, eng);
+        delete_item(item);
     })
     .on('click', ".item-block .destroy", function () {
-        $(this).parent().remove();
+        let block = $(this).parent();
 
-        let block_name = $(this).siblings('.block').text();
-
-        delete_block(block_name);
+        delete_block(block);
     })
     .on('click', ".block", function () {
         let block_id = $(this).parent().val();
@@ -144,12 +139,11 @@ $('body')
                         else {
                             let block_id = $('.item-page').attr('value');
                             create_item(eng.val(), rus.val(), block_id);
-                            add_couple(eng.val(), rus.val());
                         }
                     }
                     if (block) {
                         create_block(block);
-                        add_block(block);
+
                     }
 
             }

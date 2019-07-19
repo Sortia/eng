@@ -8,7 +8,7 @@ class ItemController extends Controller
 {
     public function post()
     {
-        $block_id = $_REQUEST['block_id'];
+        $block_id = $this->request['block_id'];
 
         $items = Item::read($block_id);
 
@@ -17,26 +17,31 @@ class ItemController extends Controller
 
     public function postCreate()
     {
-        $rus = $_REQUEST['rus'];
-        $eng = $_REQUEST['eng'];
-        $block_id = $_REQUEST['parent'];
+        $rus = $this->request['rus'];
+        $eng = $this->request['eng'];
+        $block_id = $this->request['parent'];
 
-        Item::create($rus, $eng, $block_id);
+        $item = Item::create($rus, $eng, $block_id);
+
+        response($item);
     }
 
     public function postUpdate()
     {
-        $status = $_REQUEST['status'] === "true" ? 1 : 0;
-        $item_id = $_REQUEST['item_id'];
+        $status = $this->request['status'] === "true" ? 1 : 0;
+        $item_id = $this->request['item_id'];
 
-        Item::update($status, $item_id);
+        $item = Item::update($status, $item_id);
+
+        response($item);
     }
 
     public function postDelete()
     {
-        $rus = $_REQUEST['del_rus'];
-        $eng = $_REQUEST['del_eng'];
+        $item_id = $this->request['item_id'];
 
-        Item::delete($rus, $eng);
+        $success =  Item::delete($item_id);
+
+        $success ? response() : response(false, 500);
     }
 }

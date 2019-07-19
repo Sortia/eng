@@ -92,7 +92,7 @@ function add_couple(eng, rus, status, id) {
     $("#new-eng, #new-rus").val('');
     $(".voc-list").prepend
     (
- "<li class='view item-item' value='" + id + "'>\n" +
+        "<li class='view item-item' value='" + id + "'>\n" +
             "<input class='toggle' type='checkbox' " + status + ">\n" +
             "<label class='active eng'>" + eng + "</label>\n" +
             "<label class='hidden rus'>" + rus + "</label>\n" +
@@ -102,11 +102,11 @@ function add_couple(eng, rus, status, id) {
     $('#new-eng').focus();
 }
 
-function add_block(block) {
+function add_block(block, id) {
     $('#new-block').val('');
     $(".block-list").prepend
     (
- "<li class='view item-block'>\n" +
+        "<li class='view item-block' value='" + id + "'>\n" +
             "<input class='toggle' type='checkbox' " + status + ">\n" +
             "<label class='block'>" + block + "</label>\n" +
             "<button class='destroy'></button>\n" +

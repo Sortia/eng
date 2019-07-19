@@ -17,13 +17,13 @@
                 $('.block-page').addClass('hidden-page');
                 $('.item-page').removeClass('hidden-page').attr('value', block_id);
 
-                for (let i = 0; i < data.length; i++) {
-                    let eng = data[i][2];
-                    let rus = data[i][1];
-                    let id = data[i][0];
-                    let checked = parseInt(data[i][3]) === 1 ? 'checked' : '';
+                $(data).each(function (i, value) {
+                    let eng = value['eng'];
+                    let rus = value['rus'];
+                    let id = value['id'];
+                    let checked = parseInt(value['status']) === 1 ? 'checked' : '';
                     add_couple(eng, rus, checked, id);
-                }
+                });
             }
         });
     }
@@ -39,18 +39,23 @@
                 eng: eng,
                 parent: block_id
             },
+            success: function (data) {
+                add_couple(data.eng, data.rus, data.status, data.id);
+            }
         });
     }
 
-    function delete_item(rus, eng) {
+    function delete_item(item) {
         $.ajax({
             type: "POST",
             url: "/item/delete",
             async: true,
             dataType: 'json',
             data: {
-                del_rus: rus,
-                del_eng: eng,
+                item_id: item.val(),
+            },
+            success: function () {
+                item.remove();
             },
         });
     }
@@ -81,18 +86,24 @@
             data: {
                 block_name: block_name,
             },
+            success: function (data) {
+                add_block(data.name, data.id);
+            }
         });
     }
 
-    function delete_block(block_name) {
+    function delete_block(block) {
         $.ajax({
             type: "POST",
             url: "/delete",
             async: true,
             dataType: 'json',
             data: {
-                del_block: block_name,
+                block_id: block.val(),
             },
+            success: function () {
+                block.remove();
+            }
         });
     }
 

@@ -6,9 +6,9 @@
     <section class="main">
         <ul class="todo-list block-list">
             @foreach ($blocks as $block)
-                <li class="view item-block" value="{{$block[0]}}">
-                    <input class="toggle" type="checkbox" {{$block[2] === '1' ? 'checked' : ''}}>
-                    <label class="block">{{$block[1]}}</label>
+                <li class="view item-block" value="{{$block['id']}}">
+                    <input class="toggle" type="checkbox" {{$block['status'] === '1' ? 'checked' : ''}}>
+                    <label class="block">{{$block['name']}}</label>
                     <button class="destroy"></button>
                 </li>
             @endforeach
