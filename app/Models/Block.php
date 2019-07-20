@@ -18,12 +18,13 @@ class Block extends Model
         return self::$link->query("SELECT * FROM " . self::$table . " ORDER BY id desc;")->fetchAll();
     }
 
-    static public function update($status, $block_id)
+    static public function update($block)
     {
-         self::$link->query("UPDATE " . Item::$table . " SET status = '$status' WHERE block_id = '$block_id';");
-         self::$link->query("UPDATE " . self::$table . " SET status = '$status' WHERE id = '$block_id';");
+        $block_data = self::prepareDataUpdate($block);
 
-        return self::$link->query("SELECT * FROM block WHERE id = '$block_id'")->fetch();
+        self::$link->query("UPDATE " . self::$table . " SET {$block_data} WHERE id = '{$block['id']}';");
+
+        return self::$link->query("SELECT * FROM block WHERE id = '{$block['id']}'")->fetch();
     }
 
     static public function delete($block_id)

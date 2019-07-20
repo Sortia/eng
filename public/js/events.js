@@ -11,33 +11,45 @@ $('body')
         delete_item(item);
     })
     .on('click', ".item-item .edit-item", function () {
-        let item = $($(this).siblings('label.active'));
+        let item_label = $($(this).siblings('label.active'));
 
-        item.prop('contenteditable', true).focus().addClass('no-change');
+        item_label.prop('contenteditable', true).focus().addClass('no-change-item');
 
-        let range = document.createRange();
-        let sel = window.getSelection();
-        range.setStart(item.get(0).childNodes[0], item.get(0).childNodes[0].length);
-        range.collapse(true);
-        sel.removeAllRanges();
-        sel.addRange(range);
+        moveCarriage(item_label);
     })
-    .on('blur', '.no-change', function () {
+    .on('click', ".item-block .edit-block", function () {
+        let block_label = $($(this).siblings('.block'));
+
+        block_label.prop('contenteditable', true).focus().addClass('no-change-block');
+
+        moveCarriage(block_label);
+    })
+    .on('blur', '.no-change-item', function () {
         let word = $(this);
 
-        word.removeClass('no-change').prop('contenteditable', false);
+        word.removeClass('no-change-item').prop('contenteditable', false);
 
         let item = word.parent();
         let item_data = getItemData(item);
 
         update_item(item_data);
     })
+    .on('blur', '.no-change-block', function () {
+        let block_label = $(this);
+
+        block_label.removeClass('no-change-block').prop('contenteditable', false);
+
+        let block = block_label.parent();
+        let block_data = getBlockData(block);
+
+        update_block(block_data);
+    })
     .on('click', ".item-block .destroy", function () {
         let block = $(this).parent();
 
         delete_block(block);
     })
-    .on('click', ".block", function () {
+    .on('click', ".block:not(.no-change-block)", function () {
         let block_id = $(this).parent().val();
         get_items(block_id);
     })
@@ -78,10 +90,10 @@ $('body')
         update_item(item_data);
     })
     .on('change', ".item-block .toggle", function () {
-        let status = $(this).prop("checked");
-        let item_id = $(this).parents('.view').val();
+        let block = $(this).parent();
+        let block_data = getBlockData(block);
 
-        save_block_status(status, item_id);
+        update_block(block_data);
     })
     .on('click', "#back", function () {
         $("#new-eng").val('');

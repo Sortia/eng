@@ -160,30 +160,26 @@ function getItemData(item) {
     let item_id = item.val();
     let rus = item.children('.rus').text();
     let eng = item.children('.eng').text();
-    let status = item.children('.toggle').prop("checked");
+    let item_status = item.children('.toggle').prop("checked");
 
-    return {id: item_id, rus: rus, eng: eng, status: status};
+    return {id: item_id, rus: rus, eng: eng, status: item_status};
 }
 
+function getBlockData(block) {
+    let block_id = block.val();
+    let block_name = block.children('.block').text();
+    let block_status = block.children('.toggle').prop("checked");
 
+    return {id: block_id, name: block_name, status: block_status};
+}
 
+function moveCarriage(item) {
+    let range = document.createRange();
+    let sel = window.getSelection();
 
+    range.setStart(item.get(0).childNodes[0], item.get(0).childNodes[0].length);
+    range.collapse(true);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    sel.removeAllRanges();
+    sel.addRange(range);
+}

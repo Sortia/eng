@@ -117,16 +117,13 @@
         });
     }
 
-    function save_block_status(status, block_id) {
+    function update_block(data) {
         $.ajax({
             type: "POST",
             url: "/update",
             async: true,
             dataType: 'json',
-            data: {
-                status: status,
-                block_id: block_id,
-            },
+            data: data,
         });
     }
 }

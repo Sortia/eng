@@ -24,10 +24,11 @@ class BlockController extends Controller
 
     public function postUpdate()
     {
-        $status = $this->request['status'] === "true" ? 1 : 0;
-        $block_id = $this->request['block_id'];
+        $this->request['status'] = $this->request['status'] === "true" ? 1 : 0;
 
-        $block = Block::update($status, $block_id);
+        unset($this->request['path']);
+
+        $block = Block::update($this->request);
 
         response($block);
     }
