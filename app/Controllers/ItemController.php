@@ -28,10 +28,11 @@ class ItemController extends Controller
 
     public function postUpdate()
     {
-        $status = $this->request['status'] === "true" ? 1 : 0;
-        $item_id = $this->request['item_id'];
+        $this->request['status'] = $this->request['status'] === "true" ? 1 : 0;
 
-        $item = Item::update($status, $item_id);
+        unset($this->request['path']);
+
+        $item = Item::update($this->request);
 
         response($item);
     }

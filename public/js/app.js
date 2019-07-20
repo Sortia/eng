@@ -96,6 +96,7 @@ function add_couple(eng, rus, status, id) {
             "<input class='toggle' type='checkbox' " + status + ">\n" +
             "<label class='active eng'>" + eng + "</label>\n" +
             "<label class='hidden rus'>" + rus + "</label>\n" +
+            "<i class='icon-pencil'></i>" +
             "<button class='destroy'></button>\n" +
         "</li>"
     );
@@ -154,3 +155,35 @@ $(".new-todo").keyup(function () {
         }, 1500);
     }
 });
+
+function getItemData(item) {
+    let item_id = item.val();
+    let rus = item.children('.rus').text();
+    let eng = item.children('.eng').text();
+    let status = item.children('.toggle').prop("checked");
+
+    return {id: item_id, rus: rus, eng: eng, status: status};
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -72,6 +72,16 @@
             },
         });
     }
+
+    function update_item(data) {
+        $.ajax({
+            type: "POST",
+            url: "/item/update",
+            async: true,
+            dataType: 'json',
+            data: data,
+        });
+    }
 }
 
 //####################//

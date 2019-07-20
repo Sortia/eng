@@ -225,12 +225,11 @@ body {
 .todo-list li .destroy {
     display: none;
     position: absolute;
-    top: 0;
+    top: 13px;
     right: 10px;
     bottom: 0;
-    width: 40px;
-    height: 40px;
-    margin: auto 0;
+    width: 30px;
+    height: 30px;
     font-size: 30px;
     color: #cc9a9a;
     margin-bottom: 11px;
@@ -243,10 +242,6 @@ body {
 
 .todo-list li .destroy:after {
     content: '×';
-}
-
-.todo-list li:hover .destroy {
-    display: block;
 }
 
 .todo-list li .edit {

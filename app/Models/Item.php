@@ -18,11 +18,13 @@ class Item extends Model
         return self::$link->query("SELECT * FROM " . self::$table . " WHERE block_id = $block_id ORDER BY id desc;")->fetchAll();
     }
 
-    static public function update($status, $item_id)
+    static public function update($item)
     {
-        self::$link->query("UPDATE " . self::$table . " SET status = '$status' WHERE id = '$item_id';");
+        $item_data = self::prepareDataUpdate($item);
 
-        return self::$link->query("SELECT * FROM " . self::$table . " WHERE id = '$item_id'")->fetch();
+        self::$link->query("UPDATE " . self::$table . " SET {$item_data} WHERE id = '{$item['id']}';");
+
+        return self::$link->query("SELECT * FROM " . self::$table . " WHERE id = '{$item['id']}'")->fetch();
     }
 
     static public function delete($item_id)
@@ -30,6 +32,5 @@ class Item extends Model
         self::$link->query("DELETE FROM " . self::$table . " WHERE id = '$item_id';");
 
         return (bool)!self::$link->query("SELECT EXISTS(SELECT 1 FROM " . self::$table . " WHERE id ='$item_id' LIMIT 1)")->fetchColumn();
-
     }
 }
