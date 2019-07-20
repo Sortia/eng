@@ -8,7 +8,7 @@
 <body>
     @yield('content')
 
-    <script src="public/js/jquery-3.3.1.min.js"></script>
+    <script src="../../../public/js/libs/jquery-3.3.1.min.js"></script>
     <script src="public/js/ajax.js"></script>
     <script src="public/js/app.js"></script>
     <script src="public/js/events.js"></script>
