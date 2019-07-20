@@ -442,3 +442,7 @@ div.todos .list-footer span.clear {
     padding: 0px 8px 0px 8px;
     float: right;
 }
+
+.item-item, .item-block {
+    padding-left: 8px;
+}

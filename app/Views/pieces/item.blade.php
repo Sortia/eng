@@ -7,7 +7,11 @@
     <section class="main">
         <ul class="todo-list voc-list">
             <li id="back" class="view">
-                <label style="padding: 15px;" class="block-back"><span style="padding-right: 20px;" class="back-arrow">←</span>back</label>
+                <label style="padding: 15px;" class="block-back">
+                    <span class="back-arrow">
+                        <i class="icon-level-up"></i>
+                    </span>back
+                </label>
             </li>
         </ul>
     </section>

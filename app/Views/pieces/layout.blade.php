@@ -3,7 +3,9 @@
 <head>
     <meta charset="utf-8">
     <title>ToLearn</title>
+    <link rel="stylesheet" href="public/css/icons.css">
     <link rel="stylesheet" href="public/css/index.css">
+    <link rel="stylesheet" href="public/fonts/fontello-e129e090/css/fontello.css">
 </head>
 <body>
     @yield('content')
