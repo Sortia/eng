@@ -96,7 +96,7 @@ function add_couple(eng, rus, status, id) {
             "<input class='toggle' type='checkbox' " + status + ">\n" +
             "<label class='active eng'>" + eng + "</label>\n" +
             "<label class='hidden rus'>" + rus + "</label>\n" +
-            "<i class='icon-pencil'></i>" +
+            "<i class='icon-pencil edit-item'></i>" +
             "<button class='destroy'></button>\n" +
         "</li>"
     );

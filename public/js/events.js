@@ -10,7 +10,7 @@ $('body')
 
         delete_item(item);
     })
-    .on('click', ".item-item .icon-pencil", function () {
+    .on('click', ".item-item .edit-item", function () {
         let item = $($(this).siblings('label.active'));
 
         item.prop('contenteditable', true).focus().addClass('no-change');
@@ -28,7 +28,6 @@ $('body')
         word.removeClass('no-change').prop('contenteditable', false);
 
         let item = word.parent();
-
         let item_data = getItemData(item);
 
         update_item(item_data);
