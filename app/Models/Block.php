@@ -28,12 +28,7 @@ class Block extends Model
 
     static public function delete($block_id)
     {
-        self::$link->beginTransaction();
-        self::$link->query("
-            DELETE FROM " . Item::$table . " WHERE block_id = '$block_id';
-            DELETE FROM " . self::$table . " WHERE id = '$block_id';
-        ");
-        self::$link->commit();
+        self::$link->query("DELETE FROM " . self::$table . " WHERE id = '$block_id';");
 
         return (bool)!self::$link->query("SELECT EXISTS(SELECT 1 FROM " . self::$table . " WHERE id ='$block_id' LIMIT 1)")->fetchColumn();
     }
