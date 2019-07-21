@@ -1,8 +1,7 @@
 <div class="block-page">
-    <header class="header">
-        <h1>ToLearn</h1>
+    <div class="header">
         <input class="new-todo" id="new-block" placeholder="block_name">
-    </header>
+    </div>
     <section class="main">
         <ul class="todo-list block-list">
             @foreach ($blocks as $block)

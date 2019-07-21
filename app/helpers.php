@@ -54,10 +54,15 @@ function response($data = true, $status = 200)
     echo json_encode($data);
 }
 
-function view($template, $data)
+function view($template, $data = [])
 {
     $blade = new Blade(ROOT . '/app/Views', ROOT . '/public/cache');
 
     echo $blade->make($template, $data);
 
+}
+
+function auth()
+{
+    return \App\Models\Auth::isAuth();
 }

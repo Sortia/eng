@@ -2,6 +2,7 @@ html,
 body {
     margin: 0;
     padding: 0;
+    background: #f5f5f5;
 }
 
 button {
@@ -20,14 +21,17 @@ button {
     -moz-osx-font-smoothing: grayscale;
 }
 
-body {
+a {
+    color: #fff;
+}
+
+.app-body {
     font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
     line-height: 1.4em;
-    background: #f5f5f5;
-    color: #4d4d4d;
     min-width: 230px;
     max-width: 550px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-weight: 300;
@@ -43,7 +47,7 @@ body {
 
 .todoapp {
     background: #fff;
-    margin: 200px 0 40px 0;
+    margin: 80px 0 40px 0;
     position: relative;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
     0 25px 50px 0 rgba(0, 0, 0, 0.1);
@@ -115,13 +119,6 @@ body {
     -webkit-transform: rotate(90deg);
     transform: rotate(90deg);
 }
-
-/*.toggle-all + label:before {*/
-    /*content: '❯';*/
-    /*font-size: 22px;*/
-    /*color: #e6e6e6;*/
-    /*padding: 10px 27px 10px 27px;*/
-/*}*/
 
 .toggle-all:checked + label:before {
     color: #737373;

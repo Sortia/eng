@@ -1,0 +1,23 @@
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
+header {
+    z-index: 100;
+    height: 60px;
+    background-color: #24292e;
+    position: fixed; /* Фиксированное позиционирование */
+    left: 0; right: 0; /* Вся ширина */
+    top: 0; /* Положение сверху */
+    padding: 10px; /* Поля вокруг текста */
+}
+
+header ~ div {
+    margin-top: 100px; /* Отступ сверху */
+    display: block; /* Для IE */
+}
+
+a:hover {
+    color: #a9a9a9;
+}
