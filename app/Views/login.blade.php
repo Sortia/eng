@@ -1,7 +1,7 @@
 @extends('pieces/layout')
 
 @section('content')
-    <div class="container">
+    <div class="container mt-3 pt-3">
         <div class="registration-form offset-lg-4 col-lg-4 mt-5">
             <form method="POST" action="/auth/login">
                 <div class="form-group">

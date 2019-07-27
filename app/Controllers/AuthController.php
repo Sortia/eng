@@ -15,8 +15,10 @@ class AuthController extends Controller
     {
         parent::__construct();
 
-        $this->login = $this->request['login'];
-        $this->password = $this->request['password'];
+        if(isset($this->request['login']) AND $this->request['password']) {
+            $this->login = $this->request['login'];
+            $this->password = $this->request['password'];
+        }
     }
 
     public function getLogin()
@@ -68,5 +70,7 @@ class AuthController extends Controller
     {
         $_SESSION['login'] = $this->login;
         $_SESSION['password'] = $this->password;
+
+//        dd($_SESSION);
     }
 }

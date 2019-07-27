@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-session_start();
+//session_start();
 
 class Auth extends Model
 {
@@ -17,11 +17,15 @@ class Auth extends Model
 
     static public function isAuth()
     {
-        $login = $_SESSION['login'];
-        $password = $_SESSION['password'];
+        if(isset($_SESSION['login']) AND $_SESSION['password']) {
+            $login = $_SESSION['login'];
+            $password = $_SESSION['password'];
 
-        $user = self::$link->query("SELECT * FROM " . self::$table . " WHERE login = '$login' LIMIT 1;")->fetchAll();
+            $user = self::$link->query("SELECT * FROM " . self::$table . " WHERE login = '$login' LIMIT 1;")->fetchAll();
 
-        return password_verify($password, $user[0]['password']);
+            return password_verify($password, $user[0]['password']);
+        }
+
+        return false;
     }
 }

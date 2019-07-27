@@ -1,8 +1,14 @@
 @extends('pieces/layout')
 @section('content')
-    <div class="app-body">
+
+    @if(\App\Models\Auth::isAuth())
+    @include('pieces/sidebar')
+
+
+
+    <div class="offset-lg-5 col-lg-4">
         <section class="todoapp">
-            @if(\App\Models\Auth::isAuth())
+
                 @include('pieces/block')
                 @include('pieces/item')
 
@@ -16,7 +22,8 @@
                         <span class="clear"><button id="clear">Clear completed</button></span>
                     </div>
                 </div>
-            @endif
         </section>
     </div>
+    @endif
+
 @endsection

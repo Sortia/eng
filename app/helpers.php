@@ -59,7 +59,6 @@ function view($template, $data = [])
     $blade = new Blade(ROOT . '/app/Views', ROOT . '/public/cache');
 
     echo $blade->make($template, $data);
-
 }
 
 function auth()
