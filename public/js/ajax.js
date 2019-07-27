@@ -151,8 +151,11 @@
                 eng = data.text[0];
                 $("#new-eng").val(eng);
 
-                if (eng !== rus)
-                    add_couple(eng, rus);
+                if (eng !== rus) {
+                    let block_id = $('.item-page').attr('value');
+                    create_item(eng, rus, block_id);
+                }
+
             }
         });
     }
@@ -177,8 +180,10 @@
                 rus = data.text[0];
                 $("#new-rus").val(rus);
 
-                if (eng !== rus)
-                    add_couple(eng, rus);
+                if (eng !== rus) {
+                    let block_id = $('.item-page').attr('value');
+                    create_item(eng, rus, block_id);
+                }
             }
         });
     }
