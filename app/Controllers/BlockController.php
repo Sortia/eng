@@ -15,9 +15,7 @@ class BlockController extends Controller
 
     public function postCreate()
     {
-        $block_name = $this->request['block_name'];
-
-        $block = Block::create($block_name);
+        $block = Block::create($this->request);
 
         response($block);
     }

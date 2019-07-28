@@ -37,7 +37,7 @@
             data: {
                 rus: rus,
                 eng: eng,
-                parent: block_id
+                block_id: block_id
             },
             success: function (data) {
                 add_couple(data.eng, data.rus, data.status, data.id);
@@ -87,14 +87,14 @@
 //####################//
 /* Функции для blocks */
 {
-    function create_block(block_name) {
+    function create_block(name) {
         $.ajax({
             type: "POST",
             url: "/create",
             async: true,
             dataType: 'json',
             data: {
-                block_name: block_name,
+                name: name,
             },
             success: function (data) {
                 add_block(data.name, data.id);

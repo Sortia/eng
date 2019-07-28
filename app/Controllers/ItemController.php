@@ -17,11 +17,7 @@ class ItemController extends Controller
 
     public function postCreate()
     {
-        $rus = $this->request['rus'];
-        $eng = $this->request['eng'];
-        $block_id = $this->request['parent'];
-
-        $item = Item::create($rus, $eng, $block_id);
+        $item = Item::create($this->request);
 
         response($item);
     }

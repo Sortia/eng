@@ -45,11 +45,11 @@ function asset($path)
 
 function response($data = true, $status = 200)
 {
-   if ($status !== 200) {
-       header('HTTP/1.1 500 Internal Server Booboo');
-       header('Content-Type: application/json; charset=UTF-8');
-       header('Status: ' . $status);
-   }
+    if ($status !== 200) {
+        header('HTTP/1.1 500 Internal Server Booboo');
+        header('Content-Type: application/json; charset=UTF-8');
+        header('Status: ' . $status);
+    }
 
     echo json_encode($data);
 }
@@ -64,4 +64,17 @@ function view($template, $data = [])
 function auth()
 {
     return \App\Models\Auth::isAuth();
+}
+
+function array_unset_val(&$array, $key)
+{
+    if (isset($array[$key])) {
+        $val = $array[$key];
+
+        unset($array[$key]);
+
+        return $val;
+    } else {
+        return null;
+    }
 }
