@@ -25,6 +25,10 @@ a {
     color: #fff;
 }
 
+.main label {
+    margin-bottom: 0;
+}
+
 .app-body {
     font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
     line-height: 1.4em;
@@ -202,9 +206,10 @@ a {
 }
 
 .todo-list li .destroy {
+    padding-left: 5px;
     display: none;
     position: absolute;
-    top: 13px;
+    top: 9px;
     right: 10px;
     bottom: 0;
     width: 30px;

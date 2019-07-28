@@ -9,7 +9,7 @@
                     <input class="toggle" type="checkbox" {{$block['status'] === '1' ? 'checked' : ''}}>
                     <label class="block">{{$block['name']}}</label>
                     <i class='icon-pencil edit-block'></i>
-                    <button class="destroy"></button>
+                    <i class="destroy"></i>
                 </li>
             @endforeach
         </ul>
