@@ -10,6 +10,7 @@ $collector = new RouteCollector();
 $collector->controller('/', 'Controllers\\BlockController');
 $collector->controller('/item', 'Controllers\\ItemController');
 $collector->controller('/auth', 'Controllers\\AuthController');
+$collector->controller('/vocabulary', 'Controllers\\VocabularyController');
 
 
 $dispatcher = new Dispatcher($collector->getData());
