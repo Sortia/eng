@@ -90,7 +90,7 @@
     function create_block(name) {
         $.ajax({
             type: "POST",
-            url: "/create",
+            url: "/block/create",
             async: true,
             dataType: 'json',
             data: {
@@ -105,7 +105,7 @@
     function delete_block(block) {
         $.ajax({
             type: "POST",
-            url: "/delete",
+            url: "/block/delete",
             async: true,
             dataType: 'json',
             data: {
@@ -120,7 +120,7 @@
     function update_block(data) {
         $.ajax({
             type: "POST",
-            url: "/update",
+            url: "/block/update",
             async: true,
             dataType: 'json',
             data: data,
