@@ -2,15 +2,15 @@
 
 namespace Controllers;
 
-use App\Models\Block;
+use App\Models\Flashcard;
 
 class ProfileController extends Controller
 {
     public function get()
     {
-        $blocks = Block::read();
+        $flashcards = Flashcard::read();
 
-        view('profile', ['blocks' => $blocks]);
+        view('profile', ['flashcards' => $flashcards]);
     }
 
     public function postCreate()

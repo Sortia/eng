@@ -103,13 +103,13 @@ function add_couple(eng, rus, status, id) {
     $('#new-eng').focus();
 }
 
-function add_block(block, id) {
-    $('#new-block').val('');
-    $(".block-list").prepend
+function add_flashcard(name, id) {
+    $('#new-flashcard').val('');
+    $(".flashcard-list").prepend
     (
-        "<li class='view item-block' value='" + id + "'>\n" +
+        "<li class='view item-flashcard' value='" + id + "'>\n" +
             "<input class='toggle' type='checkbox' " + status + ">\n" +
-            "<label class='block'>" + block + "</label>\n" +
+            "<label class='flashcard'>" + name + "</label>\n" +
             "<button class='destroy'></button>\n" +
         "</li>"
     );
@@ -165,12 +165,12 @@ function getItemData(item) {
     return {id: item_id, rus: rus, eng: eng, status: item_status};
 }
 
-function getBlockData(block) {
-    let block_id = block.val();
-    let block_name = block.children('.block').text();
-    let block_status = block.children('.toggle').prop("checked");
+function getFlashcardData(flashcard) {
+    let flashcard_id = flashcard.val();
+    let flashcard_name = flashcard.children('.flashcard').text();
+    let flashcard_status = flashcard.children('.toggle').prop("checked");
 
-    return {id: block_id, name: block_name, status: block_status};
+    return {id: flashcard_id, name: flashcard_name, status: flashcard_status};
 }
 
 function moveCarriage(item) {

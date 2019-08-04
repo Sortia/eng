@@ -17,7 +17,7 @@
         <script src="../../../public/js/events.js"></script>
     </head>
     <body>
-        @include('pieces/header')
+        @include('blocks/header')
         @yield('content')
     </body>
 </html>

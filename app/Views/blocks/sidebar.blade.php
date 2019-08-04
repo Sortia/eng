@@ -22,7 +22,7 @@
         </li>
         <li class="nav-item">
             <div class="nav-link">
-                <a class="active" href="block">
+                <a class="active" href="flashcard">
                     <span data-feather="home"><svg viewBox="0 0 32 32" width="32" height="32" xmlns="http://www.w3.org/2000/svg"><path d="M7 5a2 2 0 0 0-2 2v11h10V5H7zm10 0v7h10V7a2 2 0 0 0-2-2h-8zm0 9v13h8a2 2 0 0 0 2-2V14H17zM5 20v5a2 2 0 0 0 2 2h8v-7H5z" fill="currentColor" fill-rule="nonzero"></path></svg></span>
                     Flashcards <span class="sr-only">(current)</span>
                 </a>
@@ -36,9 +36,9 @@
             <div class="collapse" id="collapseExample">
             <ul class="nav flex-column ml-4 flashcards">
 
-                @foreach($blocks as $block)
+                @foreach($flashcards as $flashcard)
                     <a href="" class="flashcard_link">
-                        <div class="nav-item flashcard pl-3"><svg class="flashcard_link" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="28" height="28" viewBox="0 0 24 24" style=" fill:#000000;">    <path d="M14,2H4v20h16V8L14,2z M16,18H8v-2h8V18z M16,14H8v-2h8V14z M13,9V3.5L18.5,9H13z"></path></svg>{{$block['name']}}</div>
+                        <div class="nav-item flashcard pl-3"><svg class="flashcard_link" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="28" height="28" viewBox="0 0 24 24" style=" fill:#000000;">    <path d="M14,2H4v20h16V8L14,2z M16,18H8v-2h8V18z M16,14H8v-2h8V14z M13,9V3.5L18.5,9H13z"></path></svg>{{$flashcard['name']}}</div>
                     </a>
                 @endforeach
 

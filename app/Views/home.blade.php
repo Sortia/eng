@@ -1,8 +1,8 @@
-@extends('pieces/layout')
+@extends('blocks/layout')
 @section('content')
 
     @if(\App\Models\Auth::isAuth())
-        @include('pieces/sidebar')
+        @include('blocks/sidebar')
 
 
         <div class="offset-lg-4 col-lg-6 mt-5 pt-5">

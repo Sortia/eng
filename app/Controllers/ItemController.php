@@ -8,9 +8,9 @@ class ItemController extends Controller
 {
     public function post()
     {
-        $block_id = $this->request['block_id'];
+        $flashcard_id = $this->request['flashcard_id'];
 
-        $items = Item::read($block_id);
+        $items = Item::read($flashcard_id);
 
         response($items);
     }

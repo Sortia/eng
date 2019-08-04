@@ -1,16 +1,16 @@
-@extends('pieces/layout')
+@extends('blocks/layout')
 @section('content')
 
     @if(\App\Models\Auth::isAuth())
-    @include('pieces/sidebar')
+    @include('blocks/sidebar')
 
 
 
     <div class="offset-lg-5 col-lg-4">
         <section class="todoapp">
 
-                @include('pieces/block')
-                @include('pieces/item')
+                @include('blocks/flashcard')
+                @include('blocks/item')
 
                 <div class="todos">
                     <div class="list-footer">

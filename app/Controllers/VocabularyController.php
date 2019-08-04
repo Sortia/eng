@@ -2,7 +2,7 @@
 
 namespace Controllers;
 
-use App\Models\Block;
+use App\Models\Flashcard;
 use App\Models\Item;
 
 class VocabularyController extends Controller
@@ -10,9 +10,9 @@ class VocabularyController extends Controller
     public function get()
     {
         $items = Item::withBlock();
-        $blocks = Block::read();
+        $flashcards = Flashcard::read();
 
-        return view('vocabulary', ['items' => $items, 'blocks' => $blocks]);
+        return view('vocabulary', ['items' => $items, 'flashcards' => $flashcards]);
     }
 
     public function postCreate()

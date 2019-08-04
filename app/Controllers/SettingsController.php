@@ -2,15 +2,15 @@
 
 namespace Controllers;
 
-use App\Models\Block;
+use App\Models\Flashcard;
 
 class SettingsController extends Controller
 {
     public function get()
     {
-        $blocks = Block::read();
+        $flashcards = Flashcard::read();
 
-        view('settings', ['blocks' => $blocks]);
+        view('settings', ['flashcards' => $flashcards]);
     }
 
     public function postCreate()

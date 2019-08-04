@@ -7,7 +7,7 @@ use Phroute\Phroute\Dispatcher;
 
 $collector = new RouteCollector();
 
-$collector->controller('/block', 'Controllers\\BlockController');
+$collector->controller('/flashcard', 'Controllers\\FlashcardController');
 $collector->controller('/item', 'Controllers\\ItemController');
 $collector->controller('/auth', 'Controllers\\AuthController');
 $collector->controller('/vocabulary', 'Controllers\\VocabularyController');

@@ -3,19 +3,19 @@
 //###################//
 /* Функции для items */
 {
-    function get_items(block_id) {
+    function get_items(flashcard_id) {
         $.ajax({
             type: "POST",
             url: "/item",
             async: true,
             dataType: 'json',
             data: {
-                block_id: block_id,
+                flashcard_id: flashcard_id,
             },
             success: function (data) {
 
-                $('.block-page').addClass('hidden-page');
-                $('.item-page').removeClass('hidden-page').attr('value', block_id);
+                $('.flashcard-page').addClass('hidden-page');
+                $('.item-page').removeClass('hidden-page').attr('value', flashcard_id);
 
                 $(data).each(function (i, value) {
                     let eng = value['eng'];
@@ -28,7 +28,7 @@
         });
     }
 
-    function create_item(eng, rus, block_id) {
+    function create_item(eng, rus, flashcard_id) {
         $.ajax({
             type: "POST",
             url: "/item/create",
@@ -37,7 +37,7 @@
             data: {
                 rus: rus,
                 eng: eng,
-                block_id: block_id
+                flashcard_id: flashcard_id
             },
             success: function (data) {
                 add_couple(data.eng, data.rus, data.status, data.id);
@@ -85,42 +85,42 @@
 }
 
 //####################//
-/* Функции для blocks */
+/* Функции для flashcards */
 {
-    function create_block(name) {
+    function create_flashcard(name) {
         $.ajax({
             type: "POST",
-            url: "/block/create",
+            url: "/flashcard/create",
             async: true,
             dataType: 'json',
             data: {
                 name: name,
             },
             success: function (data) {
-                add_block(data.name, data.id);
+                add_flashcard(data.name, data.id);
             }
         });
     }
 
-    function delete_block(block) {
+    function delete_flashcard(flashcard) {
         $.ajax({
             type: "POST",
-            url: "/block/delete",
+            url: "/flashcard/delete",
             async: true,
             dataType: 'json',
             data: {
-                block_id: block.val(),
+                flashcard_id: flashcard.val(),
             },
             success: function () {
-                block.remove();
+                flashcard.remove();
             }
         });
     }
 
-    function update_block(data) {
+    function update_flashcard(data) {
         $.ajax({
             type: "POST",
-            url: "/block/update",
+            url: "/flashcard/update",
             async: true,
             dataType: 'json',
             data: data,
@@ -152,8 +152,8 @@
                 $("#new-eng").val(eng);
 
                 if (eng !== rus) {
-                    let block_id = $('.item-page').attr('value');
-                    create_item(eng, rus, block_id);
+                    let flashcard_id = $('.item-page').attr('value');
+                    create_item(eng, rus, flashcard_id);
                 }
 
             }
@@ -181,8 +181,8 @@
                 $("#new-rus").val(rus);
 
                 if (eng !== rus) {
-                    let block_id = $('.item-page').attr('value');
-                    create_item(eng, rus, block_id);
+                    let flashcard_id = $('.item-page').attr('value');
+                    create_item(eng, rus, flashcard_id);
                 }
             }
         });

@@ -7,7 +7,7 @@
         </div>
         <ul class="todo-list voc-list">
             <li id="back" class="view">
-                <label style="padding: 15px;" class="block-back">
+                <label style="padding: 15px;" class="flashcard-back">
                     <span class="back-arrow">
                         <i class="icon-level-up"></i>
                     </span>back

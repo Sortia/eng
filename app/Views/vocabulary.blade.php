@@ -1,9 +1,8 @@
-@extends('pieces/layout')
+@extends('blocks/layout')
 @section('content')
 
     @if(\App\Models\Auth::isAuth())
-        @include('pieces/sidebar')
-
+        @include('blocks/sidebar')
 
         <div class="offset-lg-4 col-lg-6 mt-5 pt-5">
             <div class="card">
@@ -25,7 +24,7 @@
                                 <th scope="row">{{$index + 1}}</th>
                                 <td>{{$item['eng']}}</td>
                                 <td>{{$item['rus']}}</td>
-                                <td>{{$item['block_name']}}</td>
+                                <td>{{$item['flashcard_name']}}</td>
                             </tr>
                         @endforeach
 
