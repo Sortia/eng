@@ -8,8 +8,8 @@ use App\Models\Auth;
 
 class AuthController extends Controller
 {
-    private $login;
-    private $password;
+    private string $login;
+    private string $password;
 
     public function __construct()
     {
@@ -70,7 +70,5 @@ class AuthController extends Controller
     {
         $_SESSION['login'] = $this->login;
         $_SESSION['password'] = $this->password;
-
-//        dd($_SESSION);
     }
 }

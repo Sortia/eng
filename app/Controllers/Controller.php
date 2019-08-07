@@ -4,9 +4,8 @@ namespace Controllers;
 
 abstract class Controller
 {
-    protected $request;
-
-    protected $path;
+    protected array $request;
+    protected string $path;
 
     abstract public function postCreate();
 
@@ -17,6 +16,6 @@ abstract class Controller
     public function __construct()
     {
         $this->request = $_REQUEST;
-        $this->path = array_unset_val($this->request, 'path');
+        $this->path = $_SERVER['REQUEST_URI'];
     }
 }

@@ -4,7 +4,7 @@ namespace App\Models;
 
 class Item extends Model
 {
-    static public $table = 'items';
+    static public string $table = 'items';
 
     static public function read($flashcard_id = null)
     {

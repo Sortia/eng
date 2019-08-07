@@ -4,7 +4,7 @@ namespace App\Models;
 
 class Auth extends Model
 {
-    static public $table = 'users';
+    static public string $table = 'users';
 
     static public function isAuth()
     {

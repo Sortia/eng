@@ -4,5 +4,5 @@ namespace App\Models;
 
 class Flashcard extends Model
 {
-    static public $table = 'flashcards';
+    static public string $table = 'flashcards';
 }

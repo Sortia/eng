@@ -6,17 +6,17 @@ use PDO;
 
 class Model
 {
-    static protected $link;
+    static protected PDO $link;
 
-    static protected $user = 'root';
+    static protected string $user = 'root';
 
-    static protected $pass = '';
+    static protected string $pass = 'root';
 
-    static protected $table = '';
+    static protected string $table = '';
 
     static public function init()
     {
-        self::$link = new PDO('mysql:host=127.0.0.1;dbname=eng', self::$user, self::$pass);
+        self::$link = new PDO('mysql:host=mysql;dbname=eng', self::$user, self::$pass);
         self::$link->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     }
 
