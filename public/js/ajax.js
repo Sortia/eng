@@ -60,19 +60,6 @@
         });
     }
 
-    function save_item_status(status, item_id) {
-        $.ajax({
-            type: "POST",
-            url: "/item/update",
-            async: true,
-            dataType: 'json',
-            data: {
-                status: status,
-                item_id: item_id,
-            },
-        });
-    }
-
     function update_item(data) {
         $.ajax({
             type: "POST",

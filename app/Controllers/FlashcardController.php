@@ -39,4 +39,9 @@ class FlashcardController extends Controller
 
         response($flashcard);
     }
+
+    public function getFlashcard()
+    {
+        dd($this->request);
+    }
 }

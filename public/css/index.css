@@ -21,8 +21,16 @@ button {
     -moz-osx-font-smoothing: grayscale;
 }
 
-a {
+.header a {
     color: #fff;
+}
+
+li a {
+    color: black;
+}
+
+li:hover a {
+    color: black;
 }
 
 .main label {
