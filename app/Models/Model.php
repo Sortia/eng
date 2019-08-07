@@ -20,7 +20,7 @@ class Model
         self::$link->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     }
 
-    static protected function prepareDataCreate($data)
+    static protected function prepareDataCreate($data) : array
     {
         $fields = array_keys($data);
         $values = array_values($data);
@@ -31,7 +31,7 @@ class Model
         return [$fields, $values];
     }
 
-    static protected function prepareDataUpdate($data)
+    static protected function prepareDataUpdate($data) : string
     {
         $update_arr = [];
 
@@ -41,7 +41,7 @@ class Model
         return implode(', ', $update_arr);
     }
 
-    static public function create($data)
+    static public function create($data) : array
     {
         list($data_keys, $data_values) = self::prepareDataCreate($data);
 
@@ -50,12 +50,12 @@ class Model
         return self::$link->query("SELECT * FROM " . static::$table . " WHERE id = (" . self::$link->lastInsertId() . ")")->fetch();
     }
 
-    static public function read($param = null)
+    static public function read($param = null) : array
     {
         return self::$link->query("SELECT * FROM " . static::$table . " ORDER BY id desc;")->fetchAll();
     }
 
-    static public function update($data)
+    static public function update($data) : array
     {
         $prepared_data = self::prepareDataUpdate($data);
 
@@ -64,7 +64,7 @@ class Model
         return self::$link->query("SELECT * FROM " . static::$table . " WHERE id = '{$data['id']}'")->fetch();
     }
 
-    static public function delete($id)
+    static public function delete($id) : bool
     {
         self::$link->query("DELETE FROM " . static::$table . " WHERE id = '$id';");
 

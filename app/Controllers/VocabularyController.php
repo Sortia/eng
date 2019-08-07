@@ -9,7 +9,7 @@ class VocabularyController extends Controller
 {
     public function get()
     {
-        $items = Item::withBlock();
+        $items = Item::withFlashcard();
         $flashcards = Flashcard::read();
 
         return view('vocabulary', ['items' => $items, 'flashcards' => $flashcards]);

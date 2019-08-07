@@ -6,7 +6,7 @@ class Auth extends Model
 {
     static public string $table = 'users';
 
-    static public function isAuth()
+    static public function isAuth() : bool
     {
         if(isset($_SESSION['login']) AND $_SESSION['password']) {
             $login = $_SESSION['login'];

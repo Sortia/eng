@@ -6,12 +6,12 @@ class Item extends Model
 {
     static public string $table = 'items';
 
-    static public function read($flashcard_id = null)
+    static public function read($flashcard_id = null) : array
     {
         return self::$link->query("SELECT * FROM " . self::$table . " WHERE flashcard_id = $flashcard_id ORDER BY id desc;")->fetchAll();
     }
 
-    static public function withBlock()
+    static public function withFlashcard() : array
     {
         $data = self::$link->query("SELECT "
             . self::$table .".id, "

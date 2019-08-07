@@ -38,7 +38,7 @@ function d($var1 = "not_found", $var2 = "not_found", $var3 = "not_found")
     echo '<pre>';
 }
 
-function asset($path)
+function asset($path) : string
 {
     return ROOT . '/' . $path;
 }
@@ -61,7 +61,7 @@ function view($template, $data = [])
     echo $blade->make($template, $data);
 }
 
-function auth()
+function auth() : bool
 {
     return \App\Models\Auth::isAuth();
 }
