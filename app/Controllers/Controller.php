@@ -12,12 +12,6 @@ abstract class Controller
 
     protected string $path;
 
-    abstract public function postCreate();
-
-    abstract public function postUpdate();
-
-    abstract public function postDelete();
-
     public function __construct()
     {
         $this->session = &$_SESSION;

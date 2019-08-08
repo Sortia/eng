@@ -16,11 +16,6 @@ class ProfileController extends Controller
         view('profile', ['user' => $user, 'flashcards' => $flashcards]);
     }
 
-    public function postCreate()
-    {
-        // TODO: Implement postCreate() method.
-    }
-
     public function postUpdate()
     {
         if (!empty($this->files['img']['name'])) {
@@ -46,10 +41,5 @@ class ProfileController extends Controller
         Auth::update($this->request);
 
         header('Location: http://' . $_SERVER['HTTP_HOST'] . '/profile');
-    }
-
-    public function postDelete()
-    {
-        // TODO: Implement postDelete() method.
     }
 }

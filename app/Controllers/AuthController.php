@@ -56,16 +56,6 @@ class AuthController extends Controller
         header("Location: /");
     }
 
-    public function postUpdate()
-    {
-        // TODO: Implement postUpdate() method.
-    }
-
-    public function postDelete()
-    {
-        // TODO: Implement postDelete() method.
-    }
-
     private function auth()
     {
         $this->session['login'] = $this->login;
