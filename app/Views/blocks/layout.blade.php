@@ -5,6 +5,7 @@
         <title>ToLearn</title>
 
         <link rel="stylesheet" href="../../../public/css/libs/bootstrap.min.css">
+        <link rel="stylesheet" href="../../../public/css/libs/sumoselect.min.css">
         <link rel="stylesheet" href="../../../public/css/resets.css">
         <link rel="stylesheet" href="../../../public/css/icons.css">
         <link rel="stylesheet" href="../../../public/css/index.css">
@@ -12,6 +13,7 @@
 
         <script src="../../../public/js/libs/jquery-3.3.1.min.js"></script>
         <script src="../../../public/js/libs/bootstrap.min.js"></script>
+        <script src="../../../public/js/libs/jquery.sumoselect.min.js"></script>
         <script src="../../../public/js/ajax.js"></script>
         <script src="../../../public/js/app.js"></script>
         <script src="../../../public/js/events.js"></script>

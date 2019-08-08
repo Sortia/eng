@@ -8,7 +8,26 @@
             <div class="card">
                 <h5 class="card-header">Settings</h5>
                 <div class="card-body">
+                    <div class="form-group mb-3">
+                        <label for="exampleFormControlSelect1">Language</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>English</option>
+                        </select>
+                    </div>
 
+                    <div class="form-group mb-3">
+                        <label for="exampleFormControlSelect1">Theme</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Default</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="exampleFormControlSelect1">Notification</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Default</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
