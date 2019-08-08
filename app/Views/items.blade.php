@@ -7,7 +7,7 @@
 
         @include('blocks/sidebar')
 
-        <div class="offset-lg-5 col-lg-4">
+        <div class="offset-lg-5 col-lg-4 mt-5 pt-5">
             <section class="todoapp">
 
                 <div class="item-page">
