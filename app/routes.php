@@ -15,7 +15,7 @@ $collector->controller('/', 'Controllers\\HomeController');
 $collector->controller('/profile', 'Controllers\\ProfileController');
 $collector->controller('/settings', 'Controllers\\SettingsController');
 
-$collector->get('/flashcard/{id}', ['Controllers\\FlashcardController','getFlashcard']);
+$collector->get('/items/{id}', ['Controllers\\ItemController','get']);
 
 $dispatcher = new Dispatcher($collector->getData());
 

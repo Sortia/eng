@@ -40,12 +40,4 @@ class FlashcardController extends Controller
 
         response($flashcard);
     }
-
-    public function getFlashcard($id)
-    {
-        $flashcards = Flashcard::read();
-        $items = Item::read($id);
-
-        view('flashcard', ['items' => $items, 'flashcards' => $flashcards]);
-    }
 }

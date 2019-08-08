@@ -2,17 +2,18 @@
 
 namespace Controllers;
 
+use App\Models\Flashcard;
 use App\Models\Item;
 
 class ItemController extends Controller
 {
-    public function post()
+    public function get($flashcard_id)
     {
-        $flashcard_id = $this->request['flashcard_id'];
-
         $items = Item::read($flashcard_id);
 
-        response($items);
+        $flashcards = Flashcard::read();
+
+        view('items' , ['items' => $items, 'flashcards' => $flashcards]);
     }
 
     public function postCreate()
