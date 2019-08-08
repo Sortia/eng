@@ -68,7 +68,7 @@
             <div class="collapse" id="collapseExample">
                 <ul class="nav flex-column ml-4 flashcards">
                     @foreach($flashcards as $flashcard)
-                        <a href="/flashcard/{{$flashcard['id']}}" class="flashcard_link">
+                        <a href="/items/{{$flashcard['id']}}" class="flashcard_link">
                             <div class="nav-item flashcard pl-3"><svg class="flashcard_link" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="28" height="28" viewBox="0 0 24 24" style=" fill:#000000;">    <path d="M14,2H4v20h16V8L14,2z M16,18H8v-2h8V18z M16,14H8v-2h8V14z M13,9V3.5L18.5,9H13z"></path></svg>{{$flashcard['name']}}</div>
                         </a>
                     @endforeach

@@ -8,14 +8,14 @@ use App\Models\Auth;
 
 class AuthController extends Controller
 {
-    private string $login;
-    private string $password;
+    private string $login = '';
+    private string $password = '';
 
     public function __construct()
     {
         parent::__construct();
 
-        if(isset($this->request['login']) AND $this->request['password']) {
+        if (isset($this->request['login']) AND isset($this->request['password'])) {
             $this->login = $this->request['login'];
             $this->password = $this->request['password'];
         }
@@ -47,8 +47,6 @@ class AuthController extends Controller
     {
         $this->request['password'] = password_hash($this->request['password'], PASSWORD_DEFAULT);
 
-        unset($this->request['path']);
-
         Auth::create($this->request);
 
         $this->auth();
@@ -62,12 +60,13 @@ class AuthController extends Controller
         $this->session['password'] = $this->password;
     }
 
-    static public function user()
+    static public function user(): array
     {
         $user = Auth::getAuthUser();
 
         if (empty($user))
             view('login');
-        else return $user;
+
+        return $user;
     }
 }

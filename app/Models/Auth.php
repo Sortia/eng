@@ -18,18 +18,14 @@ class Auth extends Model
 
     static public function read($param = null): array
     {
-        $user = self::$link->query("SELECT * FROM " . static::$table . " ORDER BY id desc;");
-
-        return self::fetch($user);
+        return $user = self::$link->query("SELECT * FROM " . static::$table . " ORDER BY id desc;")->fetchAll();
     }
 
     static public function isAuth(): bool
     {
         $user = self::getAuthUser();
 
-        if (!empty($user))
-            return password_verify($_SESSION['password'], $user['password']);
-        else return false;
+        return !empty($user) ? password_verify($_SESSION['password'], $user['password']) : false;
     }
 
     static public function getAuthUser(): array
@@ -38,8 +34,7 @@ class Auth extends Model
             $login = $_SESSION['login'];
             $password = $_SESSION['password'];
 
-            $user = self::$link->query("SELECT * FROM " . self::$table . " WHERE login = '$login' LIMIT 1;");
-            $user = self::fetch($user);
+            $user = self::$link->query("SELECT * FROM " . self::$table . " WHERE login = '$login' LIMIT 1;")->fetchAll();
 
             if (!empty($user) && password_verify($password, $user[0]['password']))
                 return $user[0];

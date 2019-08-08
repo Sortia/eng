@@ -1,6 +1,7 @@
 <?php
 
 use Jenssegers\Blade\Blade;
+use App\Models\Auth;
 
 /**
  * dump variable and die
@@ -49,19 +50,16 @@ function view($template, $data = [])
 {
     $blade = new Blade(ROOT . '/app/Views', ROOT . '/public/cache');
 
-    echo $blade->make($template, $data);
+    echo (string)$blade->make($template, $data);
     exit;
 }
 
-/**
- * @return bool
- */
-function auth() : bool
+function auth(): bool
 {
-    return \App\Models\Auth::isAuth();
+    return Auth::isAuth();
 }
 
-function asset($path)
+function asset($path): string
 {
     return '../../public/' . $path;
 }

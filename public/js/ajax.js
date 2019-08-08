@@ -3,31 +3,6 @@
 //###################//
 /* Функции для items */
 {
-    function get_items(flashcard_id) {
-        $.ajax({
-            type: "POST",
-            url: "/item",
-            async: true,
-            dataType: 'json',
-            data: {
-                flashcard_id: flashcard_id,
-            },
-            success: function (data) {
-
-                $('.flashcard-page').addClass('hidden-page');
-                $('.item-page').removeClass('hidden-page').attr('value', flashcard_id);
-
-                $(data).each(function (i, value) {
-                    let eng = value['eng'];
-                    let rus = value['rus'];
-                    let id = value['id'];
-                    let checked = parseInt(value['status']) === 1 ? 'checked' : '';
-                    add_couple(eng, rus, checked, id);
-                });
-            }
-        });
-    }
-
     function create_item(eng, rus, flashcard_id) {
         $.ajax({
             type: "POST",
@@ -45,6 +20,16 @@
         });
     }
 
+    function update_item(data) {
+        $.ajax({
+            type: "POST",
+            url: "/item/update",
+            async: true,
+            dataType: 'json',
+            data: data,
+        });
+    }
+
     function delete_item(item) {
         $.ajax({
             type: "POST",
@@ -57,16 +42,6 @@
             success: function () {
                 item.remove();
             },
-        });
-    }
-
-    function update_item(data) {
-        $.ajax({
-            type: "POST",
-            url: "/item/update",
-            async: true,
-            dataType: 'json',
-            data: data,
         });
     }
 }
@@ -89,6 +64,16 @@
         });
     }
 
+    function update_flashcard(data) {
+        $.ajax({
+            type: "POST",
+            url: "/flashcard/update",
+            async: true,
+            dataType: 'json',
+            data: data,
+        });
+    }
+
     function delete_flashcard(flashcard) {
         $.ajax({
             type: "POST",
@@ -101,16 +86,6 @@
             success: function () {
                 flashcard.remove();
             }
-        });
-    }
-
-    function update_flashcard(data) {
-        $.ajax({
-            type: "POST",
-            url: "/flashcard/update",
-            async: true,
-            dataType: 'json',
-            data: data,
         });
     }
 }

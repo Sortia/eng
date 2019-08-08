@@ -18,6 +18,7 @@ class ProfileController extends Controller
 
     public function postUpdate()
     {
+        // prepare image
         if (!empty($this->files['img']['name'])) {
             $img_name = mt_rand(0, 1000000) . $this->files['img']['name'];
             copy($this->files['img']['tmp_name'], ROOT . '/public/img/' . $img_name);
@@ -25,6 +26,7 @@ class ProfileController extends Controller
             $this->request['img'] = $img_name;
         }
 
+        // prepare password
         if (!empty($this->request['old_password']) AND !empty($this->request['new_password'])) {
 
             $user = Auth::getAuthUser();
@@ -43,6 +45,6 @@ class ProfileController extends Controller
 
         Auth::update($this->request);
 
-        header('Location: http://' . $_SERVER['HTTP_HOST'] . '/profile');
+        header('Location: /profile');
     }
 }

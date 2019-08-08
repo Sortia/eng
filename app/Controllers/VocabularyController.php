@@ -12,6 +12,6 @@ class VocabularyController extends Controller
         $items = Item::withFlashcard();
         $flashcards = Flashcard::read();
 
-        return view('vocabulary', ['items' => $items, 'flashcards' => $flashcards]);
+        view('vocabulary', ['items' => $items, 'flashcards' => $flashcards]);
     }
 }

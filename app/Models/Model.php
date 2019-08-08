@@ -8,21 +8,25 @@ class Model
 {
     static protected PDO $link;
 
-    static protected string $user = 'root';
+    static private string $user = 'root';
 
-    static protected string $pass = 'root';
+    static private string $pass = 'root';
 
-    static protected string $table = '';
+    static private string $dbname = 'eng';
 
-    static protected array $fill = [];
+    static private string $host = 'mysql';
+
+    static public string $table = '';
+
+    static public array $fill = [];
 
     static public function init()
     {
-        self::$link = new PDO('mysql:host=mysql;dbname=eng', self::$user, self::$pass);
+        self::$link = new PDO('mysql:host=' . self::$host . ';dbname=' . self::$dbname, self::$user, self::$pass);
         self::$link->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     }
 
-    static protected function prepareDataCreate($data) : array
+    static protected function prepareDataCreate($data): array
     {
         $data = array_intersect_key($data, array_flip(static::$fill));
 
@@ -35,7 +39,7 @@ class Model
         return [$fields, $values];
     }
 
-    static protected function prepareDataUpdate($data) : string
+    static protected function prepareDataUpdate($data): string
     {
         $data = array_intersect_key($data, array_flip(static::$fill));
 
@@ -47,7 +51,7 @@ class Model
         return implode(', ', $update_arr);
     }
 
-    static public function create($data) : array
+    static public function create($data): array
     {
         list($data_keys, $data_values) = self::prepareDataCreate($data);
 
@@ -56,14 +60,12 @@ class Model
         return self::$link->query("SELECT * FROM " . static::$table . " WHERE id = (" . self::$link->lastInsertId() . ")")->fetch();
     }
 
-    static public function read($param = null) : array
+    static public function read($param = null): array
     {
-        $data = self::$link->query("SELECT * FROM " . static::$table . " ORDER BY id desc;");
-
-        return self::fetch($data);
+        return $data = self::$link->query("SELECT * FROM " . static::$table . " ORDER BY id desc;")->fetchAll();
     }
 
-    static public function update($data) : array
+    static public function update($data): array
     {
         $prepared_data = self::prepareDataUpdate($data);
 
@@ -72,18 +74,11 @@ class Model
         return self::$link->query("SELECT * FROM " . static::$table . " WHERE id = '{$data['id']}'")->fetch();
     }
 
-    static public function delete($id) : bool
+    static public function delete($id): bool
     {
         self::$link->query("DELETE FROM " . static::$table . " WHERE id = '$id';");
 
         return (bool)!self::$link->query("SELECT EXISTS(SELECT 1 FROM " . static::$table . " WHERE id ='$id' LIMIT 1)")->fetchColumn();
-    }
-
-    static protected function fetch($data): array
-    {
-        if (!is_null($data))
-            return $data->fetchAll();
-        else return [];
     }
 }
 

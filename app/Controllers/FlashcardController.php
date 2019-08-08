@@ -2,8 +2,8 @@
 
 namespace Controllers;
 
+use App\Models\Auth;
 use App\Models\Flashcard;
-use App\Models\Item;
 
 class FlashcardController extends Controller
 {
@@ -16,7 +16,9 @@ class FlashcardController extends Controller
 
     public function postCreate()
     {
-        $flashcard = Flashcard::create($this->request);
+        $user_id = Auth::getAuthUser()['id'];
+
+        $flashcard = Flashcard::create($this->request + ['user_id' => $user_id]);
 
         response($flashcard);
     }

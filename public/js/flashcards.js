@@ -22,11 +22,6 @@ $(function () {
 
             delete_flashcard(flashcard);
         })
-        .on('click', ".flashcard:not(.no-change-flashcard)", function () {
-            console.log(1);
-            let flashcard_id = $(this).parent().val();
-            get_items(flashcard_id);
-        })
         .on('click', "#all", function () {
             $('.voc-list :checkbox:checked').each(function () {
                 $('.voc-list .toggle').each(function () {
