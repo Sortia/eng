@@ -29,6 +29,9 @@ class ProfileController extends Controller
 
             $user = Auth::getAuthUser();
 
+            if (empty($user))
+                view('login');
+
             if (password_verify($this->request['old_password'], $user['password'])) {
                 $password_hash = password_hash($this->request['new_password'], PASSWORD_DEFAULT);
                 $this->request['password'] = $password_hash;

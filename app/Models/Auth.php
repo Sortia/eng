@@ -18,7 +18,9 @@ class Auth extends Model
 
     static public function read($param = null): array
     {
-        return self::$link->query("SELECT * FROM " . static::$table . " ORDER BY id desc;")->fetchAll();
+        $user = self::$link->query("SELECT * FROM " . static::$table . " ORDER BY id desc;");
+
+        return self::fetch($user);
     }
 
     static public function isAuth(): bool

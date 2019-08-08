@@ -20,6 +20,8 @@ class Flashcard extends Model
         if (empty($user))
             view('login');
 
-        return self::$link->query("SELECT * FROM " . static::$table . " WHERE user_id = {$user['id']} ORDER BY id desc;")->fetchAll();
+        $flashcard = self::$link->query("SELECT * FROM " . static::$table . " WHERE user_id = {$user['id']} ORDER BY id desc;");
+
+        return self::fetch($flashcard);
     }
 }

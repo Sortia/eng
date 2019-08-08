@@ -16,7 +16,9 @@ class Item extends Model
 
     static public function read($flashcard_id = null): array
     {
-        return self::$link->query("SELECT * FROM " . self::$table . " WHERE flashcard_id = $flashcard_id ORDER BY id desc;")->fetchAll();
+        $items = self::$link->query("SELECT * FROM " . self::$table . " WHERE flashcard_id = $flashcard_id ORDER BY id desc;");
+
+        return self::fetch($items);
     }
 
     static public function withFlashcard(): array
@@ -29,7 +31,9 @@ class Item extends Model
             . Flashcard::$table . '.name as flashcard_name'
             . " FROM " . self::$table
             . " LEFT JOIN " . Flashcard::$table
-            . " ON " . self::$table . ".flashcard_id" . " = " . Flashcard::$table . '.id')->fetchAll();
+            . " ON " . self::$table . ".flashcard_id" . " = " . Flashcard::$table . '.id');
+
+        $data = self::fetch($data);
 
         return $data;
     }

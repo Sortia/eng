@@ -58,7 +58,9 @@ class Model
 
     static public function read($param = null) : array
     {
-        return self::$link->query("SELECT * FROM " . static::$table . " ORDER BY id desc;")->fetchAll();
+        $data = self::$link->query("SELECT * FROM " . static::$table . " ORDER BY id desc;");
+
+        return self::fetch($data);
     }
 
     static public function update($data) : array
