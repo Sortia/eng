@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use App\Models\Flashcard;
+use App\Models\Item;
 
 class FlashcardController extends Controller
 {
@@ -40,8 +41,11 @@ class FlashcardController extends Controller
         response($flashcard);
     }
 
-    public function getFlashcard()
+    public function getFlashcard($id)
     {
-        dd($this->request);
+        $flashcards = Flashcard::read();
+        $items = Item::read($id);
+
+        view('flashcard', ['items' => $items, 'flashcards' => $flashcards]);
     }
 }

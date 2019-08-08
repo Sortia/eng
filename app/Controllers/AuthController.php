@@ -68,7 +68,16 @@ class AuthController extends Controller
 
     private function auth()
     {
-        $_SESSION['login'] = $this->login;
-        $_SESSION['password'] = $this->password;
+        $this->session['login'] = $this->login;
+        $this->session['password'] = $this->password;
+    }
+
+    static public function user()
+    {
+        $user = Auth::getAuthUser();
+
+        if (empty($user))
+            view('errors.401');
+        else return $user;
     }
 }

@@ -26,8 +26,6 @@ class ItemController extends Controller
     {
         $this->request['status'] = $this->request['status'] === "true" ? 1 : 0;
 
-        unset($this->request['path']);
-
         $item = Item::update($this->request);
 
         response($item);

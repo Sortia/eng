@@ -50,6 +50,7 @@ function view($template, $data = [])
     $blade = new Blade(ROOT . '/app/Views', ROOT . '/public/cache');
 
     echo $blade->make($template, $data);
+    exit;
 }
 
 /**
@@ -58,4 +59,9 @@ function view($template, $data = [])
 function auth() : bool
 {
     return \App\Models\Auth::isAuth();
+}
+
+function asset($path)
+{
+    return '../../public/' . $path;
 }

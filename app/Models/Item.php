@@ -6,18 +6,26 @@ class Item extends Model
 {
     static public string $table = 'items';
 
-    static public function read($flashcard_id = null) : array
+    static public array $fill = [
+        'id',
+        'rus',
+        'eng',
+        'status',
+        'flashcard_id'
+    ];
+
+    static public function read($flashcard_id = null): array
     {
         return self::$link->query("SELECT * FROM " . self::$table . " WHERE flashcard_id = $flashcard_id ORDER BY id desc;")->fetchAll();
     }
 
-    static public function withFlashcard() : array
+    static public function withFlashcard(): array
     {
         $data = self::$link->query("SELECT "
-            . self::$table .".id, "
-            . self::$table .".rus, "
-            . self::$table .".eng, "
-            . self::$table .".status, "
+            . self::$table . ".id, "
+            . self::$table . ".rus, "
+            . self::$table . ".eng, "
+            . self::$table . ".status, "
             . Flashcard::$table . '.name as flashcard_name'
             . " FROM " . self::$table
             . " LEFT JOIN " . Flashcard::$table

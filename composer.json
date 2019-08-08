@@ -9,6 +9,7 @@
         }
     ],
     "require": {
+        "php": ">=7.4.0",
         "ext-mysqli": "*",
         "jenssegers/blade": "^1.1",
         "phroute/phroute": "^2.1",
@@ -27,7 +28,7 @@
     },
     "config": {
         "platform": {
-            "php": "7.3.2"
+            "php": "7.4.0"
         },
         "sort-packages": true
     }

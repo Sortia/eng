@@ -14,6 +14,8 @@ class Model
 
     static protected string $table = '';
 
+    static protected array $fill = [];
+
     static public function init()
     {
         self::$link = new PDO('mysql:host=mysql;dbname=eng', self::$user, self::$pass);
@@ -22,6 +24,8 @@ class Model
 
     static protected function prepareDataCreate($data) : array
     {
+        $data = array_intersect_key($data, array_flip(static::$fill));
+
         $fields = array_keys($data);
         $values = array_values($data);
 
@@ -33,6 +37,8 @@ class Model
 
     static protected function prepareDataUpdate($data) : string
     {
+        $data = array_intersect_key($data, array_flip(static::$fill));
+
         $update_arr = [];
 
         foreach ($data as $field => $value)
@@ -69,6 +75,13 @@ class Model
         self::$link->query("DELETE FROM " . static::$table . " WHERE id = '$id';");
 
         return (bool)!self::$link->query("SELECT EXISTS(SELECT 1 FROM " . static::$table . " WHERE id ='$id' LIMIT 1)")->fetchColumn();
+    }
+
+    static protected function fetch($data): array
+    {
+        if (!is_null($data))
+            return $data->fetchAll();
+        else return [];
     }
 }
 
