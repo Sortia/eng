@@ -16,7 +16,6 @@
         <script src="../../../public/js/libs/jquery.sumoselect.min.js"></script>
         <script src="../../../public/js/ajax.js"></script>
         <script src="../../../public/js/app.js"></script>
-        <script src="../../../public/js/events.js"></script>
     </head>
     <body>
         @include('blocks/header')

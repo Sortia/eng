@@ -2,6 +2,9 @@
 @section('content')
 
     @if(\App\Models\Auth::isAuth())
+
+        <script src="{{asset('js/items.js')}}"></script>
+
         @include('blocks/sidebar')
 
         <div class="offset-lg-5 col-lg-4">

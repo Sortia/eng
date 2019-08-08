@@ -9,13 +9,8 @@ let chars_arr = [
     [',', 'б'], ['.', 'ю'], ['/', '.'], [' ', ' '], ['?', ','],
 ];
 
-let shift_numder_arr = [
-    '!', '@', '#', '$', '%', '^', '&', '*', '(', ')'
-];
-
 let eng_input = '';
 let rus_input = '';
-
 
 function char_replace(text, lang) {
     let new_str = "";
@@ -92,7 +87,7 @@ function add_couple(eng, rus, status, id) {
     $("#new-eng, #new-rus").val('');
     $(".voc-list").prepend
     (
-        "<li class='view item-item' value='" + id + "'>\n" +
+"<li class='view item-item' value='" + id + "'>\n" +
             "<input class='toggle' type='checkbox' " + status + ">\n" +
             "<label class='active eng'>" + eng + "</label>\n" +
             "<label class='hidden rus'>" + rus + "</label>\n" +
@@ -107,7 +102,7 @@ function add_flashcard(name, id) {
     $('#new-flashcard').val('');
     $(".flashcard-list").prepend
     (
-        "<li class='view item-flashcard' value='" + id + "'>\n" +
+"<li class='view item-flashcard' value='" + id + "'>\n" +
             "<input class='toggle' type='checkbox' " + status + ">\n" +
             "<label class='flashcard'>" + name + "</label>\n" +
             "<button class='destroy'></button>\n" +
