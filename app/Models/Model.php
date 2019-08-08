@@ -26,7 +26,7 @@ class Model
         self::$link->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     }
 
-    static protected function prepareDataCreate($data): array
+    static protected function prepareDataCreate(array $data): array
     {
         $data = array_intersect_key($data, array_flip(static::$fill));
 
@@ -39,7 +39,7 @@ class Model
         return [$fields, $values];
     }
 
-    static protected function prepareDataUpdate($data): string
+    static protected function prepareDataUpdate(array $data): string
     {
         $data = array_intersect_key($data, array_flip(static::$fill));
 
@@ -51,7 +51,7 @@ class Model
         return implode(', ', $update_arr);
     }
 
-    static public function create($data): array
+    static public function create(array $data): array
     {
         list($data_keys, $data_values) = self::prepareDataCreate($data);
 
@@ -65,7 +65,7 @@ class Model
         return $data = self::$link->query("SELECT * FROM " . static::$table . " ORDER BY id desc;")->fetchAll();
     }
 
-    static public function update($data): array
+    static public function update(array $data): array
     {
         $prepared_data = self::prepareDataUpdate($data);
 
@@ -74,7 +74,7 @@ class Model
         return self::$link->query("SELECT * FROM " . static::$table . " WHERE id = '{$data['id']}'")->fetch();
     }
 
-    static public function delete($id): bool
+    static public function delete(int $id): bool
     {
         self::$link->query("DELETE FROM " . static::$table . " WHERE id = '$id';");
 

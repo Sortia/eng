@@ -7,7 +7,7 @@ use App\Models\Item;
 
 class ItemController extends Controller
 {
-    public function get($flashcard_id)
+    public function get(int $flashcard_id)
     {
         $items = Item::read($flashcard_id);
 
@@ -38,6 +38,6 @@ class ItemController extends Controller
 
         $success =  Item::delete($item_id);
 
-        $success ? response() : response(false, 500);
+        $success ? response() : response([], 500);
     }
 }

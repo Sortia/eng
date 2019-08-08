@@ -35,7 +35,7 @@ function d(...$vars)
  * @param array $data
  * @param int $status
  */
-function response($data = [], $status = 200)
+function response(array $data = [], int $status = 200)
 {
     if ($status !== 200) {
         header('HTTP/1.1 500 Internal Server Booboo');
@@ -46,7 +46,7 @@ function response($data = [], $status = 200)
     echo json_encode($data);
 }
 
-function view($template, $data = [])
+function view(string $template, array $data = [])
 {
     $blade = new Blade(ROOT . '/app/Views', ROOT . '/public/cache');
 
@@ -59,7 +59,7 @@ function auth(): bool
     return Auth::isAuth();
 }
 
-function asset($path): string
+function asset(string $path): string
 {
     return '../../public/' . $path;
 }
