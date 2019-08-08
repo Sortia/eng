@@ -2,10 +2,10 @@
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Хост: localhost
--- Время создания: Авг 04 2019 г., 19:29
--- Версия сервера: 10.3.16-MariaDB
--- Версия PHP: 7.3.7
+-- Хост: mysql
+-- Время создания: Авг 08 2019 г., 15:48
+-- Версия сервера: 5.7.22
+-- Версия PHP: 7.2.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -76,9 +76,7 @@ INSERT INTO `items` (`id`, `rus`, `eng`, `status`, `flashcard_id`) VALUES
 (279, 'ÐžÐ´Ð¸Ð½', '1', 0, 16),
 (280, 'Ð”Ð²Ð°', '2', 0, 16),
 (281, 'Ð¢Ñ€Ð¸', '3', 0, 16),
-(282, 'ÐŸÑÑ‚ÑŒ', '5', 0, 16),
-(283, '432', '1123', 1, 17),
-(284, '312', '123', 1, 17);
+(282, 'ÐŸÑÑ‚ÑŒ', '5', 1, 16);
 
 -- --------------------------------------------------------
 
@@ -88,6 +86,9 @@ INSERT INTO `items` (`id`, `rus`, `eng`, `status`, `flashcard_id`) VALUES
 
 CREATE TABLE `users` (
                          `id` int(11) NOT NULL,
+                         `first_name` varchar(255) DEFAULT NULL,
+                         `last_name` varchar(255) DEFAULT NULL,
+                         `img` varchar(255) NOT NULL DEFAULT 'default.png',
                          `login` varchar(255) NOT NULL,
                          `password` varchar(255) NOT NULL,
                          `email` varchar(255) NOT NULL
@@ -97,9 +98,8 @@ CREATE TABLE `users` (
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `login`, `password`, `email`) VALUES
-(1, 'Sortia', '$2y$10$0uQj.N/dF7lH.AM/S6FGWORo1fkJQXLNpFVnoEvwXwBct/RKbyA5C', 'alex-kiyan.lug@mail.ru'),
-(2, 'Sortia', '$2y$10$lqZQh.9DUzKyW7b2S0A64.shkH3n/yoyESKts4vsTR0DuYOjvcdOe', 'alex-kiyan.lug@mail.ru');
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `img`, `login`, `password`, `email`) VALUES
+(1, 'Sasha', 'Kiyan123', '3355245b69b7162154a31c008b4b6f-750-563.jpg', 'Sortia', '$2y$10$wdCOiV6OFvSfLyQxE4rXEOkHSoIZ6yrpSBr5NXqiT72PF10tsM./K', 'alex-kiyan.lug@mail.ru');
 
 --
 -- Индексы сохранённых таблиц
