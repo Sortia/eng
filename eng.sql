@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: mysql
--- Время создания: Авг 08 2019 г., 15:48
+-- Время создания: Авг 08 2019 г., 16:09
 -- Версия сервера: 5.7.22
 -- Версия PHP: 7.2.19
 
@@ -31,16 +31,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `flashcards` (
                               `id` int(11) NOT NULL,
                               `name` varchar(255) DEFAULT NULL,
-                              `status` tinyint(4) DEFAULT NULL
+                              `status` tinyint(4) DEFAULT NULL,
+                              `user_id` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Дамп данных таблицы `flashcards`
 --
 
-INSERT INTO `flashcards` (`id`, `name`, `status`) VALUES
-(16, '1235', 0),
-(17, '1234', 1);
+INSERT INTO `flashcards` (`id`, `name`, `status`, `user_id`) VALUES
+(16, '1235', 0, 2),
+(17, '1234', 1, 1);
 
 --
 -- Триггеры `flashcards`
@@ -76,7 +77,7 @@ INSERT INTO `items` (`id`, `rus`, `eng`, `status`, `flashcard_id`) VALUES
 (279, 'ÐžÐ´Ð¸Ð½', '1', 0, 16),
 (280, 'Ð”Ð²Ð°', '2', 0, 16),
 (281, 'Ð¢Ñ€Ð¸', '3', 0, 16),
-(282, 'ÐŸÑÑ‚ÑŒ', '5', 1, 16);
+(282, 'ÐŸÑÑ‚ÑŒ', '5', 0, 16);
 
 -- --------------------------------------------------------
 

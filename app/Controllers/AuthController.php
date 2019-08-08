@@ -77,7 +77,7 @@ class AuthController extends Controller
         $user = Auth::getAuthUser();
 
         if (empty($user))
-            view('errors.401');
+            view('login');
         else return $user;
     }
 }
