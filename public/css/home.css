@@ -1,0 +1,25 @@
+.news_list li {
+    list-style: none;
+    width: 100%;
+    box-shadow: 0 0 10px #0000003b;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.news_list li:hover {
+    box-shadow: 0 0 10px rgba(127, 139, 144, 0.47);
+    background: #d9edf7;
+    cursor: pointer;
+}
+
+.news_list {
+    padding: 0 15px;
+}
+
+.news_list li a {
+    padding: 20px;
+}
+
+.warning-hover {
+    color: black;
+}
