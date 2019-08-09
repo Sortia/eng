@@ -54,7 +54,7 @@
                                                Upload image <input name="img" type="file" id="imgInp">
                                             </span>
                                         </div>
-                                        <input aria-label="Upload image" id="img_name" type="text" class="form-control" readonly>
+                                        <input aria-label="Upload image" id="img_name" type="text" class="form-control">
                                     </div>
 
                                     <div id="change_pass_block" style="display: none">
