@@ -69,13 +69,6 @@ $(function () {
 
             update_item(item_data);
         })
-        .on('click', "#back", function () {
-            $("#new-eng").val('');
-            $("#new-rus").val('');
-            $('.voc-list li').not('li:last').remove();
-            $('.item-page').addClass('hidden-page').removeAttr('value');
-            $('.flashcard-page').removeClass('hidden-page');
-        })
         .keypress(function (event) {
 
             switch (event.keyCode) {

@@ -21,9 +21,9 @@
                                     <a href="items/{{$flashcard['id']}}">
                                         <input class="toggle" type="checkbox" {{$flashcard['status'] === '1' ? 'checked' : ''}}>
                                         <label class="flashcard">{{$flashcard['name']}}</label>
-                                        <i class='icon-pencil edit-flashcard'></i>
-                                        <i class="destroy"></i>
                                     </a>
+                                    <i class='icon-pencil edit-flashcard'></i>
+                                    <i class="destroy"></i>
                                 </li>
                             @endforeach
                         </ul>

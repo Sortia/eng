@@ -6,7 +6,7 @@
     function create_item(eng, rus, flashcard_id) {
         $.ajax({
             type: "POST",
-            url: "/item/create",
+            url: window.location.href + "/create",
             async: true,
             dataType: 'json',
             data: {
@@ -23,7 +23,7 @@
     function update_item(data) {
         $.ajax({
             type: "POST",
-            url: "/item/update",
+            url: window.location.href + "/update",
             async: true,
             dataType: 'json',
             data: data,
@@ -33,7 +33,7 @@
     function delete_item(item) {
         $.ajax({
             type: "POST",
-            url: "/item/delete",
+            url: window.location.href + "/delete",
             async: true,
             dataType: 'json',
             data: {
@@ -94,9 +94,6 @@
 /* Функции перевода (Yandex.Translater API) */
 {
     function rus_into_eng(rus) {
-
-        let eng = "";
-
         $.ajax({
             type: "POST",
             url: "https://translate.yandex.net/api/v1.5/tr.json/translate",
@@ -113,7 +110,7 @@
                 eng = data.text[0];
                 $("#new-eng").val(eng);
 
-                if (eng !== rus) {
+                if (eng !== rus) { // если удалось перевести
                     let flashcard_id = $('.item-page').attr('value');
                     create_item(eng, rus, flashcard_id);
                 }
@@ -123,9 +120,6 @@
     }
 
     function eng_into_rus(eng) {
-
-        let rus = "";
-
         $.ajax({
             type: "POST",
             url: "https://translate.yandex.net/api/v1.5/tr.json/translate",
@@ -142,7 +136,7 @@
                 rus = data.text[0];
                 $("#new-rus").val(rus);
 
-                if (eng !== rus) {
+                if (eng !== rus) { // если удалось перевести
                     let flashcard_id = $('.item-page').attr('value');
                     create_item(eng, rus, flashcard_id);
                 }

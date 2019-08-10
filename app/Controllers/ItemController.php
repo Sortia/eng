@@ -16,14 +16,14 @@ class ItemController extends Controller
         view('items' , ['items' => $items, 'flashcards' => $flashcards]);
     }
 
-    public function postCreate()
+    public function postCreate(int $flashcard_id)
     {
-        $item = Item::create($this->request);
+        $item = Item::create($this->request + ['flashcard_id' => $flashcard_id]);
 
         response($item);
     }
 
-    public function postUpdate()
+    public function postUpdate(int $flashcard_id)
     {
         $this->request['status'] = $this->request['status'] === "true" ? 1 : 0;
 
@@ -32,7 +32,7 @@ class ItemController extends Controller
         response($item);
     }
 
-    public function postDelete()
+    public function postDelete(int $flashcard_id)
     {
         $item_id = $this->request['item_id'];
 

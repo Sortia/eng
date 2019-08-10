@@ -1,7 +1,7 @@
 $(function () {
     $('body')
         .on('click', ".item-flashcard .edit-flashcard", function () {
-            let flashcard_label = $($(this).siblings('.flashcard'));
+            let flashcard_label = $($(this).parent().find('.flashcard'));
 
             flashcard_label.prop('contenteditable', true).focus().addClass('no-change-flashcard');
 
@@ -12,7 +12,7 @@ $(function () {
 
             flashcard_label.removeClass('no-change-flashcard').prop('contenteditable', false);
 
-            let flashcard = flashcard_label.parent();
+            let flashcard = flashcard_label.parents('.item-flashcard');
             let flashcard_data = getFlashcardData(flashcard);
 
             update_flashcard(flashcard_data);
@@ -53,7 +53,7 @@ $(function () {
             });
         })
         .on('change', ".item-flashcard .toggle", function () {
-            let flashcard = $(this).parent();
+            let flashcard = $(this).parents('.item-flashcard');
             let flashcard_data = getFlashcardData(flashcard);
 
             update_flashcard(flashcard_data);

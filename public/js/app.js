@@ -86,13 +86,13 @@ function add_couple(eng, rus, status, id) {
     $("#new-eng, #new-rus").val('');
     $(".voc-list").prepend
     (
-"<li class='view item-item' value='" + id + "'>\n" +
-            "<input class='toggle' type='checkbox' " + status + ">\n" +
-            "<label class='active eng'>" + eng + "</label>\n" +
-            "<label class='hidden rus'>" + rus + "</label>\n" +
-            "<i class='icon-pencil edit-item'></i>" +
-            "<i class='destroy'></i>\n" +
-        "</li>"
+`<li class='view item-item' value="${id}">\n` +
+            `<input class='toggle' type='checkbox'>\n` +
+            `<label class='active eng'>${eng}</label>\n` +
+            `<label class='hidden rus'>${rus}</label>\n` +
+            `<i class='icon-pencil edit-item'></i>` +
+            `<i class='destroy'></i>\n` +
+        `</li>`
     );
     $('#new-eng').focus();
 }
@@ -101,11 +101,14 @@ function add_flashcard(name, id) {
     $('#new-flashcard').val('');
     $(".flashcard-list").prepend
     (
-"<li class='view item-flashcard' value='" + id + "'>\n" +
-            "<input class='toggle' type='checkbox' " + status + ">\n" +
-            "<label class='flashcard'>" + name + "</label>\n" +
-            "<button class='destroy'></button>\n" +
-        "</li>"
+`<li class='view item-flashcard' value="${id}">\n` +
+            `<a href="items/${id}">` +
+                `<input class='toggle' type='checkbox'>\n` +
+                `<label class='flashcard'>${name}</label>\n` +
+            `</a>` +
+            `<i class='icon-pencil edit-flashcard'></i>\n` +
+            `<button class='destroy'></button>\n` +
+        `</li>`
     );
 }
 
@@ -161,8 +164,8 @@ function getItemData(item) {
 
 function getFlashcardData(flashcard) {
     let flashcard_id = flashcard.val();
-    let flashcard_name = flashcard.children('.flashcard').text();
-    let flashcard_status = flashcard.children('.toggle').prop("checked");
+    let flashcard_name = flashcard.find('.flashcard').text();
+    let flashcard_status = flashcard.find('.toggle').prop("checked");
 
     return {id: flashcard_id, name: flashcard_name, status: flashcard_status};
 }

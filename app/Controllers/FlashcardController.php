@@ -27,8 +27,6 @@ class FlashcardController extends Controller
     {
         $this->request['status'] = $this->request['status'] === "true" ? 1 : 0;
 
-        unset($this->request['path']);
-
         $flashcard = Flashcard::update($this->request);
 
         response($flashcard);
@@ -40,6 +38,6 @@ class FlashcardController extends Controller
 
         $flashcard = Flashcard::delete($flashcard_id);
 
-        response($flashcard);
+        response(['success' => $flashcard]);
     }
 }

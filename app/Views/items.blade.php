@@ -11,7 +11,6 @@
             <section class="todoapp">
 
                 <div class="item-page">
-
                     <section class="main">
                         <div class="header">
                             <input class="new-todo new-eng" id="new-eng" placeholder="eng text">
