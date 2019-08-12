@@ -30,26 +30,26 @@ $(function () {
             });
         })
         .on('click', "#active", function () {
-            $('.voc-list .toggle:checked').each(function () {
+            $('.flashcard-list .toggle:checked').each(function () {
                 $(this).parent().addClass('hidden-item');
             });
 
-            $('.voc-list .toggle:not(:checked)').each(function () {
+            $('.flashcard-list .toggle:not(:checked)').each(function () {
                 $(this).parent().removeClass('hidden-item');
             });
         })
         .on('click', "#completed", function () {
-            $('.voc-list .toggle:not(:checked)').each(function () {
+            $('.flashcard-list .toggle:not(:checked)').each(function () {
                 $(this).parent().addClass('hidden-item');
             });
 
-            $('.voc-list .toggle:checked').each(function () {
+            $('.flashcard-list .toggle:checked').each(function () {
                 $(this).parent().removeClass('hidden-item');
             });
         })
         .on('click', "#clear", function () {
-            $('.voc-list .toggle:checked').each(function () {
-                $(this).siblings('.destroy').click();
+            $('.flashcard-list .toggle:checked').each(function () {
+                $(this).parent().siblings('.destroy').click();
             });
         })
         .on('change', ".item-flashcard .toggle", function () {

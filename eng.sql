@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: mysql
--- Время создания: Авг 08 2019 г., 16:09
+-- Время создания: Авг 12 2019 г., 06:49
 -- Версия сервера: 5.7.22
 -- Версия PHP: 7.2.19
 
@@ -40,8 +40,9 @@ CREATE TABLE `flashcards` (
 --
 
 INSERT INTO `flashcards` (`id`, `name`, `status`, `user_id`) VALUES
-(16, '1235', 0, 2),
-(17, '1234', 1, 1);
+(26, 'second', 0, 1),
+(28, 'third', 1, 1),
+(29, 'first', NULL, 1);
 
 --
 -- Триггеры `flashcards`
@@ -74,10 +75,15 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `rus`, `eng`, `status`, `flashcard_id`) VALUES
-(279, 'ÐžÐ´Ð¸Ð½', '1', 0, 16),
-(280, 'Ð”Ð²Ð°', '2', 0, 16),
-(281, 'Ð¢Ñ€Ð¸', '3', 0, 16),
-(282, 'ÐŸÑÑ‚ÑŒ', '5', 0, 16);
+(294, 'Ñ‡ÐµÑ‚Ñ‹Ñ€Ðµ', 'four', 0, 26),
+(295, 'Ð¿ÑÑ‚ÑŒ', 'five', 0, 26),
+(296, 'ÑˆÐµÑÑ‚ÑŒ', 'six', 0, 26),
+(297, 'ÑÐµÐ¼ÑŒ', 'seven', 1, 28),
+(298, 'Ð²Ð¾ÑÐµÐ¼ÑŒ', 'eight', 1, 28),
+(299, 'Ð´ÐµÐ²ÑÑ‚ÑŒ', 'nine', 1, 28),
+(300, 'Ð¾Ð´Ð¸Ð½', 'one', NULL, 29),
+(301, 'Ð´Ð²Ð°', 'two', 1, 29),
+(302, 'Ñ‚Ñ€Ð¸', 'three', 1, 29);
 
 -- --------------------------------------------------------
 
@@ -100,7 +106,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `img`, `login`, `password`, `email`) VALUES
-(1, 'Sasha', 'Kiyan123', '3355245b69b7162154a31c008b4b6f-750-563.jpg', 'Sortia', '$2y$10$wdCOiV6OFvSfLyQxE4rXEOkHSoIZ6yrpSBr5NXqiT72PF10tsM./K', 'alex-kiyan.lug@mail.ru');
+(1, 'Sasha', 'Kiyan123', '585016ava.png', 'Sortia1', '$2y$10$NCWnfo12KnylB0elKLIvIO/r.24FAHjlcv8tNnw2UUu4eXmtLjxxW', 'alex-kiyan.lug@mail.ru');
 
 --
 -- Индексы сохранённых таблиц
@@ -132,19 +138,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `flashcards`
 --
 ALTER TABLE `flashcards`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT для таблицы `items`
 --
 ALTER TABLE `items`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=285;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=303;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
